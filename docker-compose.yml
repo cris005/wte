@@ -1,0 +1,42 @@
+version: '3.9'
+services:
+    mysql:
+        image: mysql:${MYSQL_VERSION}
+        hostname: database
+        logging:
+            driver: none
+        command: --max_allowed_packet=256M
+        volumes:
+            - "./data/db:/var/lib/mysql:delegated"
+        ports:
+            - 13306:3306
+        environment:
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+            MYSQL_USER: ${MYSQL_USER}
+            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+        restart: always
+        networks:
+            - default
+    wallet:
+        image: wte:latest
+        hostname: wallet
+        logging:
+            driver: none
+        env_file:
+            - .env
+        volumes:
+            - ${LOG_DIR}:/usr/local/lsws/logs/
+            # Uncomment the below if you want to share your local files instead of copying them
+            #- ${APP_DIR}:/var/www/vhosts/localhost
+        ports:
+            - 80:80
+            - 443:443
+            - 443:443/udp
+        restart: always
+        environment:
+            TZ: ${TIMEZONE}
+        networks:
+            - default
+networks:
+    default:
+        driver: bridge

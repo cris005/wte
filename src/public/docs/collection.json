@@ -1,0 +1,406 @@
+{
+    "variable": [
+        {
+            "id": "baseUrl",
+            "key": "baseUrl",
+            "type": "string",
+            "name": "string",
+            "value": "http:\/\/localhost"
+        }
+    ],
+    "info": {
+        "name": "Bizmoto Wallet",
+        "_postman_id": "be4176da-284c-4a67-868d-76205f6d304d",
+        "description": "",
+        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
+    },
+    "item": [
+        {
+            "name": "Endpoints",
+            "description": "",
+            "item": [
+                {
+                    "name": "Execute the fund movements (credits and debits) required to\ncomplete the transaction associated to the provided Ref. No.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/rest\/transfer",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/rest\/transfer"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"Source\":10010586384,\"Target\":10010645288,\"Amount\":245.5,\"Fee\":10,\"Accounts\":[60001]}"
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Reverse\/refund a transaction that has been executed",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/rest\/reverseTransaction",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/rest\/reverseTransaction"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"RefNum\":168742}"
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Find the balance for the given Account number",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/rest\/balanceinquiry",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/rest\/balanceinquiry"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"AccountNo\":10010586384}"
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Fetch the current User's Wallet Balance(s)",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v2\/wallet\/balance\/:account_no",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v2\/wallet\/balance\/:account_no",
+                            "variable": [
+                                {
+                                    "id": "account_no",
+                                    "key": "account_no",
+                                    "value": "et",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "59"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"status\":401,\"title\":\"Unauthorized\",\"type\":\"https:\\\/\\\/www.rfc-editor.org\\\/rfc\\\/rfc9110.html\",\"message\":\"You are unauthenticated and therefore unauthorized to access this resource.\",\"details\":\"The access token provided is either expired or invalid.\",\"_links\":{\"self\":{\"href\":\"http:\\\/\\\/localhost\\\/api\\\/v2\\\/wallet\\\/balance\\\/et\"}}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Fetch details of a User's specific Wallet",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v2\/wallet\/:account_no",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v2\/wallet\/:account_no",
+                            "variable": [
+                                {
+                                    "id": "account_no",
+                                    "key": "account_no",
+                                    "value": "voluptate",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "58"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"status\":401,\"title\":\"Unauthorized\",\"type\":\"https:\\\/\\\/www.rfc-editor.org\\\/rfc\\\/rfc9110.html\",\"message\":\"You are unauthenticated and therefore unauthorized to access this resource.\",\"details\":\"The access token provided is either expired or invalid.\",\"_links\":{\"self\":{\"href\":\"http:\\\/\\\/localhost\\\/api\\\/v2\\\/wallet\\\/voluptate\"}}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Fetch details of all Wallets that belong to User",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v2\/wallet",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v2\/wallet"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "57"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"status\":401,\"title\":\"Unauthorized\",\"type\":\"https:\\\/\\\/www.rfc-editor.org\\\/rfc\\\/rfc9110.html\",\"message\":\"You are unauthenticated and therefore unauthorized to access this resource.\",\"details\":\"The access token provided is either expired or invalid.\",\"_links\":{\"self\":{\"href\":\"http:\\\/\\\/localhost\\\/api\\\/v2\\\/wallet\"}}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Execute the fund movements of a given Bizmoto Transaction",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v2\/transaction\/transfer",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v2\/transaction\/transfer"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"transaction_uuid\":\"729a1f81-a73b-32cb-8f17-a304781dd491\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Reverse\/refund a transaction that has been executed",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v2\/transaction\/reverse",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v2\/transaction\/reverse"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"transaction_uuid\":\"e7a98c3f-405a-3dd2-bcd0-d4db547ecf7c\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Fetch all Wallet Journal Records that belong\nto a Transaction reference number",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v2\/transaction",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v2\/transaction"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"transaction_uuid\":\"7c65daa7-cb86-3e04-baa4-4ea089abd534\",\"date_start\":\"2023-02-03T02:10:39\",\"date_end\":\"2023-02-03T02:10:39\",\"include_debits\":false,\"include_credits\":false}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "56"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"status\":401,\"title\":\"Unauthorized\",\"type\":\"https:\\\/\\\/www.rfc-editor.org\\\/rfc\\\/rfc9110.html\",\"message\":\"You are unauthenticated and therefore unauthorized to access this resource.\",\"details\":\"The access token provided is either expired or invalid.\",\"_links\":{\"self\":{\"href\":\"http:\\\/\\\/localhost\\\/api\\\/v2\\\/transaction\"}}}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "auth": {
+        "type": "bearer",
+        "bearer": [
+            {
+                "key": "key",
+                "value": null,
+                "type": "string"
+            }
+        ]
+    }
+}
