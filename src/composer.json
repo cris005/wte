@@ -1,5 +1,5 @@
 {
-    "name": "cristhian-hernandez/wte",
+    "name": "cris005/wte",
     "type": "project",
     "description": "REST API for processing of Ledger and Wallet transactions; compliant with Double Entry Accounting standards.",
     "authors": [
@@ -17,20 +17,21 @@
         "aws/aws-sdk-php": "^3.258.1",
         "brick/money": "^0.7.1",
         "guzzlehttp/guzzle": "^7.5",
+        "hidehalo/nanoid-php": "^1.1",
         "laminas/laminas-json": "^3.5",
-        "laravel/framework": "^9.50.1",
+        "laravel/framework": "^10.0",
         "laravel/sanctum": "^3.2.1",
         "laravel/tinker": "^2.8"
     },
     "require-dev": {
         "fakerphp/faker": "^1.21.0",
-        "knuckleswtf/scribe": "^4.13",
-        "laravel/pint": "^1.4.1",
-        "laravel/sail": "^1.19.0",
+        "knuckleswtf/scribe": "^4.15",
+        "laravel/pint": "^1.5",
+        "laravel/sail": "^1.20",
         "mockery/mockery": "^1.5.1",
-        "nunomaduro/collision": "^6.4",
-        "phpunit/phpunit": "^9.5.28",
-        "spatie/laravel-ignition": "^1.6.4"
+        "nunomaduro/collision": "^7.0",
+        "phpunit/phpunit": "10.0",
+        "spatie/laravel-ignition": "^2.0"
     },
     "autoload": {
         "psr-4": {
@@ -72,6 +73,6 @@
             "pestphp/pest-plugin": true
         }
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "prefer-stable": true
 }

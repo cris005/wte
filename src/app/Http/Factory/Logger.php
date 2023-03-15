@@ -2,8 +2,8 @@
 
 namespace App\Http\Factory;
 
-use Exception;
 use Illuminate\Support\Facades\Facade;
+use Throwable;
 
 /**
  * @method static LogFactory channel(?string $channel = null)
@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static void debug(string $message, array $context = [])
  * @method static void emergency(string $message, array $context = [])
  * @method static void error(string $message, array $context = [])
- * @method static void exception(string $message, Exception $exception, array $context = [])
+ * @method static void exception(string $message, Throwable $exception, array $context = [])
  * @method static void info(string $message, array $context = [])
  * @method static void notice(string $message, array $context = [])
  * @method static void warning(string $message, array $context = [])

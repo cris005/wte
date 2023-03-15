@@ -2,7 +2,9 @@
 
 namespace App\Models\V2\Journal;
 
-class Log extends AbstractJournalModel
+use App\Models\AbstractModel;
+
+class Log extends AbstractModel
 {
-    protected $table = 'ledger_transaction_log';
+    protected $table = 'journal_transaction_log';
 }

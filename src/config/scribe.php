@@ -62,7 +62,8 @@ return [
              * The route can be referenced by name or path here. Wildcards are supported.
              */
             'exclude' => [
-                // '/health', 'admin.*'
+                'api/v1/*',
+                'api/v2/admin/*'
             ],
 
             /*
@@ -87,7 +88,7 @@ return [
                      * API calls will be made only for routes in this group matching these HTTP methods (GET, POST, etc).
                      * List the methods here or use '*' to mean all methods. Leave empty to disable API calls.
                      */
-                    'methods' => ['GET'],
+                    'methods' => [],
 
                     /*
                      * Laravel config variables which should be set for the API call.
@@ -228,7 +229,7 @@ return [
         /*
          * The name of the auth parameter (eg token, key, apiKey) or header (eg Authorization, Api-Key).
          */
-        'name' => 'key',
+        'name' => 'Authorization',
 
         /*
          * The value of the parameter to be used by Scribe to authenticate response calls.

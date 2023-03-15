@@ -2,8 +2,9 @@
 
 namespace App\Models\V2\Transaction;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\AbstractModel;
 
-class Channel extends Model
+class Channel extends AbstractModel
 {
+    protected $table = 'transaction_channel';
 }

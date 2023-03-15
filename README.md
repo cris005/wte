@@ -108,9 +108,8 @@ processors=4 # Limits number VM virtual processors
 ### 1. Pull this repository
 Clone this repository or copy the files from this repository into a new folder:
 ```bash
-git clone git@bitbucket.org:pepperminttech/bizmoto-environment.git
+git clone git@github.com:cris005/wte.git
 ```
->You must have your SSH key whitelisted in bitbucket and stored in `~/.ssh/id_rsa`
 
 ### 2. Build the Docker image
 Open a terminal, `cd` to the folder in which `docker compose.yml` is saved, and run:

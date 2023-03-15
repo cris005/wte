@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\V1;
 
-use App\Exceptions\Ledger\InvalidFeesException;
+use App\Exceptions\Journal\InvalidFeesException;
 use App\Exceptions\Wallet\AccountNotFoundException;
 use App\Http\Controllers\Controller;
 use App\Http\Factory\LoggerTrait;
+use App\Models\User\Wallet;
 use App\Models\V1\Journal;
 use Illuminate\Http\JsonResponse;
 
@@ -33,7 +34,7 @@ abstract class AbstractController extends Controller
 
         try {
             foreach ($fees as $account => $fee) {
-                \App\Models\User\Wallet::fetch($account);
+                Wallet::fetch($account);
             }
         } catch (AccountNotFoundException $e) {
             $this->log()->error('Invalid fee structure', ['fees' => $fees]);

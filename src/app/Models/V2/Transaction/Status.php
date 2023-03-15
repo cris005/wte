@@ -2,8 +2,9 @@
 
 namespace App\Models\V2\Transaction;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\AbstractModel;
 
-class Status extends Model
+class Status extends AbstractModel
 {
+    protected $table = 'transaction_status';
 }

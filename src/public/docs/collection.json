@@ -9,8 +9,8 @@
         }
     ],
     "info": {
-        "name": "Bizmoto Wallet",
-        "_postman_id": "be4176da-284c-4a67-868d-76205f6d304d",
+        "name": "Wallet Transaction Engine",
+        "_postman_id": "14ab4d50-2ec6-4ab1-88b7-aa1e14d2946f",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -20,15 +20,23 @@
             "description": "",
             "item": [
                 {
-                    "name": "Execute the fund movements (credits and debits) required to\ncomplete the transaction associated to the provided Ref. No.",
+                    "name": "Fetch the balance of a given Wallet",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/v1\/rest\/transfer",
+                            "path": "api\/v2\/wallet\/balance\/:id",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/v1\/rest\/transfer"
+                            "raw": "{{baseUrl}}\/api\/v2\/wallet\/balance\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "5",
+                                    "description": "The ID of the balance."
+                                }
+                            ]
                         },
-                        "method": "POST",
+                        "method": "GET",
                         "header": [
                             {
                                 "key": "Content-Type",
@@ -39,66 +47,7 @@
                                 "value": "application\/json"
                             }
                         ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "{\"Source\":10010586384,\"Target\":10010645288,\"Amount\":245.5,\"Fee\":10,\"Accounts\":[60001]}"
-                        },
-                        "description": ""
-                    },
-                    "response": []
-                },
-                {
-                    "name": "Reverse\/refund a transaction that has been executed",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/v1\/rest\/reverseTransaction",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/v1\/rest\/reverseTransaction"
-                        },
-                        "method": "POST",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "{\"RefNum\":168742}"
-                        },
-                        "description": ""
-                    },
-                    "response": []
-                },
-                {
-                    "name": "Find the balance for the given Account number",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/v1\/rest\/balanceinquiry",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/v1\/rest\/balanceinquiry"
-                        },
-                        "method": "POST",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "{\"AccountNo\":10010586384}"
-                        },
+                        "body": null,
                         "description": ""
                     },
                     "response": []
@@ -108,17 +57,9 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/v2\/wallet\/balance\/:account_no",
+                            "path": "api\/v2\/wallet\/balance",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/v2\/wallet\/balance\/:account_no",
-                            "variable": [
-                                {
-                                    "id": "account_no",
-                                    "key": "account_no",
-                                    "value": "et",
-                                    "description": ""
-                                }
-                            ]
+                            "raw": "{{baseUrl}}\/api\/v2\/wallet\/balance"
                         },
                         "method": "GET",
                         "header": [
@@ -131,53 +72,28 @@
                                 "value": "application\/json"
                             }
                         ],
-                        "body": null,
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"account_no\":10010586384}"
+                        },
                         "description": ""
                     },
-                    "response": [
-                        {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "x-ratelimit-limit",
-                                    "value": "60"
-                                },
-                                {
-                                    "key": "x-ratelimit-remaining",
-                                    "value": "59"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 401,
-                            "body": "{\"status\":401,\"title\":\"Unauthorized\",\"type\":\"https:\\\/\\\/www.rfc-editor.org\\\/rfc\\\/rfc9110.html\",\"message\":\"You are unauthenticated and therefore unauthorized to access this resource.\",\"details\":\"The access token provided is either expired or invalid.\",\"_links\":{\"self\":{\"href\":\"http:\\\/\\\/localhost\\\/api\\\/v2\\\/wallet\\\/balance\\\/et\"}}}",
-                            "name": ""
-                        }
-                    ]
+                    "response": []
                 },
                 {
-                    "name": "Fetch details of a User's specific Wallet",
+                    "name": "Fetch the details of a given Wallet",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/v2\/wallet\/:account_no",
+                            "path": "api\/v2\/wallet\/:id",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/v2\/wallet\/:account_no",
+                            "raw": "{{baseUrl}}\/api\/v2\/wallet\/:id",
                             "variable": [
                                 {
-                                    "id": "account_no",
-                                    "key": "account_no",
-                                    "value": "voluptate",
-                                    "description": ""
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "55",
+                                    "description": "The ID of the wallet."
                                 }
                             ]
                         },
@@ -195,38 +111,10 @@
                         "body": null,
                         "description": ""
                     },
-                    "response": [
-                        {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "x-ratelimit-limit",
-                                    "value": "60"
-                                },
-                                {
-                                    "key": "x-ratelimit-remaining",
-                                    "value": "58"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 401,
-                            "body": "{\"status\":401,\"title\":\"Unauthorized\",\"type\":\"https:\\\/\\\/www.rfc-editor.org\\\/rfc\\\/rfc9110.html\",\"message\":\"You are unauthenticated and therefore unauthorized to access this resource.\",\"details\":\"The access token provided is either expired or invalid.\",\"_links\":{\"self\":{\"href\":\"http:\\\/\\\/localhost\\\/api\\\/v2\\\/wallet\\\/voluptate\"}}}",
-                            "name": ""
-                        }
-                    ]
+                    "response": []
                 },
                 {
-                    "name": "Fetch details of all Wallets that belong to User",
+                    "name": "Fetch details of all Wallets that belong to the User",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -245,41 +133,16 @@
                                 "value": "application\/json"
                             }
                         ],
-                        "body": null,
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"account_no\":10010586384}"
+                        },
                         "description": ""
                     },
-                    "response": [
-                        {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "x-ratelimit-limit",
-                                    "value": "60"
-                                },
-                                {
-                                    "key": "x-ratelimit-remaining",
-                                    "value": "57"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 401,
-                            "body": "{\"status\":401,\"title\":\"Unauthorized\",\"type\":\"https:\\\/\\\/www.rfc-editor.org\\\/rfc\\\/rfc9110.html\",\"message\":\"You are unauthenticated and therefore unauthorized to access this resource.\",\"details\":\"The access token provided is either expired or invalid.\",\"_links\":{\"self\":{\"href\":\"http:\\\/\\\/localhost\\\/api\\\/v2\\\/wallet\"}}}",
-                            "name": ""
-                        }
-                    ]
+                    "response": []
                 },
                 {
-                    "name": "Execute the fund movements of a given Bizmoto Transaction",
+                    "name": "Execute the fund movements of a given Transaction Record",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -300,22 +163,37 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"transaction_uuid\":\"729a1f81-a73b-32cb-8f17-a304781dd491\"}"
+                            "raw": "{\"transaction_uuid\":\"af02664a-0c55-370b-a0b6-e685d9eb2d17\"}"
                         },
                         "description": ""
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 204,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
                 },
                 {
-                    "name": "Reverse\/refund a transaction that has been executed",
+                    "name": "Fetch all Transaction records that belong to a Wallet",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/v2\/transaction\/reverse",
+                            "path": "api\/v2\/transaction\/wallet\/:id",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/v2\/transaction\/reverse"
+                            "raw": "{{baseUrl}}\/api\/v2\/transaction\/wallet\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "7414846",
+                                    "description": "The ID of the wallet."
+                                }
+                            ]
                         },
-                        "method": "POST",
+                        "method": "GET",
                         "header": [
                             {
                                 "key": "Content-Type",
@@ -328,14 +206,50 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"transaction_uuid\":\"e7a98c3f-405a-3dd2-bcd0-d4db547ecf7c\"}"
+                            "raw": "{\"date_start\":\"2023-03-15T22:50:54\",\"date_end\":\"2023-03-15T22:50:54\"}"
                         },
                         "description": ""
                     },
                     "response": []
                 },
                 {
-                    "name": "Fetch all Wallet Journal Records that belong\nto a Transaction reference number",
+                    "name": "Fetch a specific Transaction record",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v2\/transaction\/:uuid",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v2\/transaction\/:uuid",
+                            "variable": [
+                                {
+                                    "id": "uuid",
+                                    "key": "uuid",
+                                    "value": "2efD91B7b-6942b-3cFFb-22E1b-53e4a7a6c18D",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"include_fees\":true,\"include_meta\":true}"
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Fetch all Transaction records that belong to a User",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -356,39 +270,169 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"transaction_uuid\":\"7c65daa7-cb86-3e04-baa4-4ea089abd534\",\"date_start\":\"2023-02-03T02:10:39\",\"date_end\":\"2023-02-03T02:10:39\",\"include_debits\":false,\"include_credits\":false}"
+                            "raw": "{\"date_start\":\"2023-03-15T22:50:54\",\"date_end\":\"2023-03-15T22:50:54\"}"
                         },
                         "description": ""
                     },
-                    "response": [
-                        {
-                            "header": [
+                    "response": []
+                },
+                {
+                    "name": "Create a new Transaction record",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v2\/transaction",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v2\/transaction"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"user_id\":11,\"category_id\":1,\"channel_id\":19,\"debit_account_id\":14,\"credit_account_id\":8,\"amount\":42147.079621417,\"origin_currency_id\":20,\"target_currency_id\":3,\"external_ref_no\":\"animi\",\"remarks\":\"iste\",\"fees\":[{\"account_id\":158930,\"amount\":10.2,\"type_id\":1}],\"metadata\":[{\"key\":\"partner_transaction_details\",\"value\":{\"bank_swift\":\"CUOBPHM2\",\"recipient_name\":\"Juan dela Cruz\",\"recipient_address\":\"300 Juan dela Street, WA 6021\"}}]}"
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Fetch all Wallet Journal Records that belong to a\ngiven Transaction",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v2\/journal\/transaction\/:uuid",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v2\/journal\/transaction\/:uuid",
+                            "variable": [
                                 {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "x-ratelimit-limit",
-                                    "value": "60"
-                                },
-                                {
-                                    "key": "x-ratelimit-remaining",
-                                    "value": "56"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
+                                    "id": "uuid",
+                                    "key": "uuid",
+                                    "value": "11be467eb-7F0Cb-dCeAb-dDe9b-8CfCcd21C77F",
+                                    "description": ""
                                 }
-                            ],
-                            "code": 401,
-                            "body": "{\"status\":401,\"title\":\"Unauthorized\",\"type\":\"https:\\\/\\\/www.rfc-editor.org\\\/rfc\\\/rfc9110.html\",\"message\":\"You are unauthenticated and therefore unauthorized to access this resource.\",\"details\":\"The access token provided is either expired or invalid.\",\"_links\":{\"self\":{\"href\":\"http:\\\/\\\/localhost\\\/api\\\/v2\\\/transaction\"}}}",
-                            "name": ""
-                        }
-                    ]
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Fetch all Wallet Journal Records that belong to a\ngiven Wallet",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v2\/journal\/wallet\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v2\/journal\/wallet\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "6",
+                                    "description": "The ID of the wallet."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"date_start\":\"2023-03-15T22:50:54\",\"date_end\":\"2023-03-15T22:50:54\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Fetch a specific Wallet Journal Record",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v2\/journal\/:uuid",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v2\/journal\/:uuid",
+                            "variable": [
+                                {
+                                    "id": "uuid",
+                                    "key": "uuid",
+                                    "value": "Ec8Dc425b-b61Bb-11C0b-3beCb-2DDaCAB97C97",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Fetch all Wallet Journal Records that belong to a\ngiven User qnd search based on parameters",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v2\/journal",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v2\/journal"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"date_start\":\"2023-03-15T22:50:54\",\"date_end\":\"2023-03-15T22:50:54\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": []
                 }
             ]
         }
@@ -397,7 +441,7 @@
         "type": "bearer",
         "bearer": [
             {
-                "key": "key",
+                "key": "Authorization",
                 "value": null,
                 "type": "string"
             }

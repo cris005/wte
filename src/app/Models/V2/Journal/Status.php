@@ -2,7 +2,9 @@
 
 namespace App\Models\V2\Journal;
 
-class Status extends AbstractJournalModel
+use App\Models\AbstractModel;
+
+class Status extends AbstractModel
 {
-    protected $table = 'ledger_transaction_status';
+    protected $table = 'journal_transaction_status';
 }

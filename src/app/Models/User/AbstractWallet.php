@@ -66,6 +66,15 @@ abstract class AbstractWallet extends AbstractModel
     ];
 
     /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'laravel_through_key'
+    ];
+
+    /**
      * Fetch a Wallet record
      *
      * @param string $accountNo

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 use Ramsey\Uuid\Uuid;
 
 abstract class AbstractSeeder extends Seeder
@@ -26,7 +27,7 @@ abstract class AbstractSeeder extends Seeder
     {
         foreach ($this->rows as $row) {
             if ($this->generateUuids) {
-                $row['uuid'] = Uuid::uuid4()->toString();
+                $row['uuid'] = Str::orderedUuid()->toString();
             }
             $this->model::create($row);
         }

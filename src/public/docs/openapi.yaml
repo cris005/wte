@@ -1,16 +1,16 @@
 openapi: 3.0.3
 info:
-  title: 'Bizmoto Wallet'
+  title: 'Wallet Transaction Engine'
   description: ''
   version: 1.0.0
 servers:
   -
     url: 'http://localhost'
 paths:
-  /api/v1/rest/transfer:
-    post:
-      summary: "Execute the fund movements (credits and debits) required to\ncomplete the transaction associated to the provided Ref. No."
-      operationId: executeTheFundMovementscreditsAndDebitsRequiredTocompleteTheTransactionAssociatedToTheProvidedRefNo
+  '/api/v2/wallet/balance/{id}':
+    get:
+      summary: 'Fetch the balance of a given Wallet'
+      operationId: fetchTheBalanceOfAGivenWallet
       description: ''
       parameters:
         -
@@ -37,128 +37,16 @@ paths:
       responses: {  }
       tags:
         - Endpoints
-      requestBody:
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the balance.'
+        example: '5'
         required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                Source:
-                  type: number
-                  description: 'The source Account Number.'
-                  example: 10010586384.0
-                Target:
-                  type: number
-                  description: 'The target Account Number.'
-                  example: 10010645288.0
-                Amount:
-                  type: number
-                  description: 'The amount to be transferred.'
-                  example: 245.5
-                Fee:
-                  type: number
-                  description: 'The transaction''s total fee (will be sent to the default Fee Account). If there are multiple fee recipients, leave this blank and fill out the "Accounts" parameter.'
-                  example: 10.0
-                Accounts:
-                  type: array
-                  description: 'The Fee Accounts and respective fees for each account. Example: {"0060001": 15.2, "0070001": 12.8}.'
-                  example:
-                    - 60001.0
-                  items:
-                    type: number
-              required:
-                - Source
-                - Target
-                - Amount
-                - Accounts
-  /api/v1/rest/reverseTransaction:
-    post:
-      summary: 'Reverse/refund a transaction that has been executed'
-      operationId: reverserefundATransactionThatHasBeenExecuted
-      description: ''
-      parameters:
-        -
-          in: header
-          name: Authorization
-          description: ''
-          example: 'Bearer {YOUR_ACCESS_TOKEN}'
-          schema:
-            type: string
-        -
-          in: header
-          name: Content-Type
-          description: ''
-          example: application/json
-          schema:
-            type: string
-        -
-          in: header
-          name: Accept
-          description: ''
-          example: application/json
-          schema:
-            type: string
-      responses: {  }
-      tags:
-        - Endpoints
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                RefNum:
-                  type: integer
-                  description: "The journal record's Reference Number."
-                  example: 168742
-              required:
-                - RefNum
-  /api/v1/rest/balanceinquiry:
-    post:
-      summary: 'Find the balance for the given Account number'
-      operationId: findTheBalanceForTheGivenAccountNumber
-      description: ''
-      parameters:
-        -
-          in: header
-          name: Authorization
-          description: ''
-          example: 'Bearer {YOUR_ACCESS_TOKEN}'
-          schema:
-            type: string
-        -
-          in: header
-          name: Content-Type
-          description: ''
-          example: application/json
-          schema:
-            type: string
-        -
-          in: header
-          name: Accept
-          description: ''
-          example: application/json
-          schema:
-            type: string
-      responses: {  }
-      tags:
-        - Endpoints
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                AccountNo:
-                  type: number
-                  description: 'The Account Number for which the balance is being fetched.'
-                  example: 10010586384.0
-              required:
-                - AccountNo
-  '/api/v2/wallet/balance/{account_no}':
+        schema:
+          type: string
+  /api/v2/wallet/balance:
     get:
       summary: "Fetch the current User's Wallet Balance(s)"
       operationId: fetchTheCurrentUsersWalletBalances
@@ -185,367 +73,7 @@ paths:
           example: application/json
           schema:
             type: string
-      responses:
-        401:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  status: 401
-                  title: Unauthorized
-                  type: 'https://www.rfc-editor.org/rfc/rfc9110.html'
-                  message: 'You are unauthenticated and therefore unauthorized to access this resource.'
-                  details: 'The access token provided is either expired or invalid.'
-                  _links:
-                    self:
-                      href: 'http://localhost/api/v2/wallet/balance/et'
-                properties:
-                  status:
-                    type: integer
-                    example: 401
-                  title:
-                    type: string
-                    example: Unauthorized
-                  type:
-                    type: string
-                    example: 'https://www.rfc-editor.org/rfc/rfc9110.html'
-                  message:
-                    type: string
-                    example: 'You are unauthenticated and therefore unauthorized to access this resource.'
-                  details:
-                    type: string
-                    example: 'The access token provided is either expired or invalid.'
-                  _links:
-                    type: object
-                    properties:
-                      self:
-                        type: object
-                        properties:
-                          href:
-                            type: string
-                            example: 'http://localhost/api/v2/wallet/balance/et'
-      tags:
-        - Endpoints
-    parameters:
-      -
-        in: path
-        name: account_no
-        description: 'Optional parameter.'
-        required: true
-        schema:
-          type: string
-        examples:
-          omitted:
-            summary: 'When the value is omitted'
-            value: ''
-          present:
-            summary: 'When the value is present'
-            value: et
-  '/api/v2/wallet/{account_no}':
-    get:
-      summary: "Fetch details of a User's specific Wallet"
-      operationId: fetchDetailsOfAUsersSpecificWallet
-      description: ''
-      parameters:
-        -
-          in: header
-          name: Authorization
-          description: ''
-          example: 'Bearer {YOUR_ACCESS_TOKEN}'
-          schema:
-            type: string
-        -
-          in: header
-          name: Content-Type
-          description: ''
-          example: application/json
-          schema:
-            type: string
-        -
-          in: header
-          name: Accept
-          description: ''
-          example: application/json
-          schema:
-            type: string
-      responses:
-        401:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  status: 401
-                  title: Unauthorized
-                  type: 'https://www.rfc-editor.org/rfc/rfc9110.html'
-                  message: 'You are unauthenticated and therefore unauthorized to access this resource.'
-                  details: 'The access token provided is either expired or invalid.'
-                  _links:
-                    self:
-                      href: 'http://localhost/api/v2/wallet/voluptate'
-                properties:
-                  status:
-                    type: integer
-                    example: 401
-                  title:
-                    type: string
-                    example: Unauthorized
-                  type:
-                    type: string
-                    example: 'https://www.rfc-editor.org/rfc/rfc9110.html'
-                  message:
-                    type: string
-                    example: 'You are unauthenticated and therefore unauthorized to access this resource.'
-                  details:
-                    type: string
-                    example: 'The access token provided is either expired or invalid.'
-                  _links:
-                    type: object
-                    properties:
-                      self:
-                        type: object
-                        properties:
-                          href:
-                            type: string
-                            example: 'http://localhost/api/v2/wallet/voluptate'
-      tags:
-        - Endpoints
-    parameters:
-      -
-        in: path
-        name: account_no
-        description: ''
-        example: voluptate
-        required: true
-        schema:
-          type: string
-  /api/v2/wallet:
-    get:
-      summary: 'Fetch details of all Wallets that belong to User'
-      operationId: fetchDetailsOfAllWalletsThatBelongToUser
-      description: ''
-      parameters:
-        -
-          in: header
-          name: Authorization
-          description: ''
-          example: 'Bearer {YOUR_ACCESS_TOKEN}'
-          schema:
-            type: string
-        -
-          in: header
-          name: Content-Type
-          description: ''
-          example: application/json
-          schema:
-            type: string
-        -
-          in: header
-          name: Accept
-          description: ''
-          example: application/json
-          schema:
-            type: string
-      responses:
-        401:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  status: 401
-                  title: Unauthorized
-                  type: 'https://www.rfc-editor.org/rfc/rfc9110.html'
-                  message: 'You are unauthenticated and therefore unauthorized to access this resource.'
-                  details: 'The access token provided is either expired or invalid.'
-                  _links:
-                    self:
-                      href: 'http://localhost/api/v2/wallet'
-                properties:
-                  status:
-                    type: integer
-                    example: 401
-                  title:
-                    type: string
-                    example: Unauthorized
-                  type:
-                    type: string
-                    example: 'https://www.rfc-editor.org/rfc/rfc9110.html'
-                  message:
-                    type: string
-                    example: 'You are unauthenticated and therefore unauthorized to access this resource.'
-                  details:
-                    type: string
-                    example: 'The access token provided is either expired or invalid.'
-                  _links:
-                    type: object
-                    properties:
-                      self:
-                        type: object
-                        properties:
-                          href:
-                            type: string
-                            example: 'http://localhost/api/v2/wallet'
-      tags:
-        - Endpoints
-  /api/v2/transaction/transfer:
-    post:
-      summary: 'Execute the fund movements of a given Bizmoto Transaction'
-      operationId: executeTheFundMovementsOfAGivenBizmotoTransaction
-      description: ''
-      parameters:
-        -
-          in: header
-          name: Authorization
-          description: ''
-          example: 'Bearer {YOUR_ACCESS_TOKEN}'
-          schema:
-            type: string
-        -
-          in: header
-          name: Content-Type
-          description: ''
-          example: application/json
-          schema:
-            type: string
-        -
-          in: header
-          name: Accept
-          description: ''
-          example: application/json
-          schema:
-            type: string
       responses: {  }
-      tags:
-        - Endpoints
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                transaction_uuid:
-                  type: string
-                  description: 'Must be a valid UUID.'
-                  example: 729a1f81-a73b-32cb-8f17-a304781dd491
-              required:
-                - transaction_uuid
-  /api/v2/transaction/reverse:
-    post:
-      summary: 'Reverse/refund a transaction that has been executed'
-      operationId: reverserefundATransactionThatHasBeenExecuted
-      description: ''
-      parameters:
-        -
-          in: header
-          name: Authorization
-          description: ''
-          example: 'Bearer {YOUR_ACCESS_TOKEN}'
-          schema:
-            type: string
-        -
-          in: header
-          name: Content-Type
-          description: ''
-          example: application/json
-          schema:
-            type: string
-        -
-          in: header
-          name: Accept
-          description: ''
-          example: application/json
-          schema:
-            type: string
-      responses: {  }
-      tags:
-        - Endpoints
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                transaction_uuid:
-                  type: string
-                  description: 'Must be a valid UUID.'
-                  example: e7a98c3f-405a-3dd2-bcd0-d4db547ecf7c
-              required:
-                - transaction_uuid
-  /api/v2/transaction:
-    get:
-      summary: "Fetch all Wallet Journal Records that belong\nto a Transaction reference number"
-      operationId: fetchAllWalletJournalRecordsThatBelongtoATransactionReferenceNumber
-      description: ''
-      parameters:
-        -
-          in: header
-          name: Authorization
-          description: ''
-          example: 'Bearer {YOUR_ACCESS_TOKEN}'
-          schema:
-            type: string
-        -
-          in: header
-          name: Content-Type
-          description: ''
-          example: application/json
-          schema:
-            type: string
-        -
-          in: header
-          name: Accept
-          description: ''
-          example: application/json
-          schema:
-            type: string
-      responses:
-        401:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  status: 401
-                  title: Unauthorized
-                  type: 'https://www.rfc-editor.org/rfc/rfc9110.html'
-                  message: 'You are unauthenticated and therefore unauthorized to access this resource.'
-                  details: 'The access token provided is either expired or invalid.'
-                  _links:
-                    self:
-                      href: 'http://localhost/api/v2/transaction'
-                properties:
-                  status:
-                    type: integer
-                    example: 401
-                  title:
-                    type: string
-                    example: Unauthorized
-                  type:
-                    type: string
-                    example: 'https://www.rfc-editor.org/rfc/rfc9110.html'
-                  message:
-                    type: string
-                    example: 'You are unauthenticated and therefore unauthorized to access this resource.'
-                  details:
-                    type: string
-                    example: 'The access token provided is either expired or invalid.'
-                  _links:
-                    type: object
-                    properties:
-                      self:
-                        type: object
-                        properties:
-                          href:
-                            type: string
-                            example: 'http://localhost/api/v2/transaction'
       tags:
         - Endpoints
       requestBody:
@@ -555,26 +83,598 @@ paths:
             schema:
               type: object
               properties:
+                account_no:
+                  type: number
+                  description: "The Wallet's Account Number to be fetched. Will default to all accounts, if not provided."
+                  example: 10010586384.0
+  '/api/v2/wallet/{id}':
+    get:
+      summary: 'Fetch the details of a given Wallet'
+      operationId: fetchTheDetailsOfAGivenWallet
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_ACCESS_TOKEN}'
+          schema:
+            type: string
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the wallet.'
+        example: '55'
+        required: true
+        schema:
+          type: string
+  /api/v2/wallet:
+    get:
+      summary: 'Fetch details of all Wallets that belong to the User'
+      operationId: fetchDetailsOfAllWalletsThatBelongToTheUser
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_ACCESS_TOKEN}'
+          schema:
+            type: string
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                account_no:
+                  type: number
+                  description: "The Wallet's Account Number to be fetched. Will default to all accounts, if not provided."
+                  example: 10010586384.0
+  /api/v2/transaction/transfer:
+    post:
+      summary: 'Execute the fund movements of a given Transaction Record'
+      operationId: executeTheFundMovementsOfAGivenTransactionRecord
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_ACCESS_TOKEN}'
+          schema:
+            type: string
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        204:
+          description: ''
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
                 transaction_uuid:
                   type: string
                   description: 'Must be a valid UUID.'
-                  example: 7c65daa7-cb86-3e04-baa4-4ea089abd534
+                  example: af02664a-0c55-370b-a0b6-e685d9eb2d17
+              required:
+                - transaction_uuid
+  '/api/v2/transaction/wallet/{id}':
+    get:
+      summary: 'Fetch all Transaction records that belong to a Wallet'
+      operationId: fetchAllTransactionRecordsThatBelongToAWallet
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_ACCESS_TOKEN}'
+          schema:
+            type: string
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
                 date_start:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2023-02-03T02:10:39'
+                  example: '2023-03-15T22:50:54'
                 date_end:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2023-02-03T02:10:39'
-                include_debits:
+                  example: '2023-03-15T22:50:54'
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the wallet.'
+        example: '7414846'
+        required: true
+        schema:
+          type: string
+  '/api/v2/transaction/{uuid}':
+    get:
+      summary: 'Fetch a specific Transaction record'
+      operationId: fetchASpecificTransactionRecord
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_ACCESS_TOKEN}'
+          schema:
+            type: string
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                include_fees:
                   type: boolean
                   description: ''
-                  example: false
-                include_credits:
+                  example: true
+                include_meta:
                   type: boolean
                   description: ''
-                  example: false
+                  example: true
+    parameters:
+      -
+        in: path
+        name: uuid
+        description: ''
+        example: 2efD91B7b-6942b-3cFFb-22E1b-53e4a7a6c18D
+        required: true
+        schema:
+          type: string
+  /api/v2/transaction:
+    get:
+      summary: 'Fetch all Transaction records that belong to a User'
+      operationId: fetchAllTransactionRecordsThatBelongToAUser
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_ACCESS_TOKEN}'
+          schema:
+            type: string
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                date_start:
+                  type: string
+                  description: 'Must be a valid date.'
+                  example: '2023-03-15T22:50:54'
+                date_end:
+                  type: string
+                  description: 'Must be a valid date.'
+                  example: '2023-03-15T22:50:54'
+    post:
+      summary: 'Create a new Transaction record'
+      operationId: createANewTransactionRecord
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_ACCESS_TOKEN}'
+          schema:
+            type: string
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                  description: ''
+                  example: 11
+                category_id:
+                  type: integer
+                  description: ''
+                  example: 1
+                channel_id:
+                  type: integer
+                  description: ''
+                  example: 19
+                debit_account_id:
+                  type: integer
+                  description: ''
+                  example: 14
+                credit_account_id:
+                  type: integer
+                  description: 'The value and <code>debit_account_id</code> must be different.'
+                  example: 8
+                amount:
+                  type: number
+                  description: ''
+                  example: 42147.079621417
+                origin_currency_id:
+                  type: integer
+                  description: ''
+                  example: 20
+                target_currency_id:
+                  type: integer
+                  description: ''
+                  example: 3
+                external_ref_no:
+                  type: string
+                  description: ''
+                  example: animi
+                remarks:
+                  type: string
+                  description: ''
+                  example: iste
+                fees:
+                  type: array
+                  description: 'List of transaction fees.'
+                  example:
+                    -
+                      account_id: 158930
+                      amount: 10.2
+                      type_id: 1
+                  items:
+                    type: object
+                    properties:
+                      account_id:
+                        type: integer
+                        description: ''
+                        example: 1
+                      amount:
+                        type: number
+                        description: ''
+                        example: 141404.0
+                      type_id:
+                        type: integer
+                        description: ''
+                        example: 5
+                    required:
+                      - account_id
+                      - amount
+                      - type_id
+                metadata:
+                  type: array
+                  description: 'List of metadata entries.'
+                  example:
+                    -
+                      key: partner_transaction_details
+                      value:
+                        bank_swift: CUOBPHM2
+                        recipient_name: 'Juan dela Cruz'
+                        recipient_address: '300 Juan dela Street, WA 6021'
+                  items:
+                    type: object
+                    properties:
+                      key:
+                        type: string
+                        description: ''
+                        example: sit
+                      value:
+                        type: string
+                        description: ''
+                        example: id
+                    required:
+                      - key
+                      - value
+              required:
+                - user_id
+                - category_id
+                - debit_account_id
+                - credit_account_id
+                - amount
+  '/api/v2/journal/transaction/{uuid}':
+    get:
+      summary: "Fetch all Wallet Journal Records that belong to a\ngiven Transaction"
+      operationId: fetchAllWalletJournalRecordsThatBelongToAgivenTransaction
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_ACCESS_TOKEN}'
+          schema:
+            type: string
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+    parameters:
+      -
+        in: path
+        name: uuid
+        description: ''
+        example: 11be467eb-7F0Cb-dCeAb-dDe9b-8CfCcd21C77F
+        required: true
+        schema:
+          type: string
+  '/api/v2/journal/wallet/{id}':
+    get:
+      summary: "Fetch all Wallet Journal Records that belong to a\ngiven Wallet"
+      operationId: fetchAllWalletJournalRecordsThatBelongToAgivenWallet
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_ACCESS_TOKEN}'
+          schema:
+            type: string
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                date_start:
+                  type: string
+                  description: 'Must be a valid date.'
+                  example: '2023-03-15T22:50:54'
+                date_end:
+                  type: string
+                  description: 'Must be a valid date.'
+                  example: '2023-03-15T22:50:54'
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the wallet.'
+        example: '6'
+        required: true
+        schema:
+          type: string
+  '/api/v2/journal/{uuid}':
+    get:
+      summary: 'Fetch a specific Wallet Journal Record'
+      operationId: fetchASpecificWalletJournalRecord
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_ACCESS_TOKEN}'
+          schema:
+            type: string
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+    parameters:
+      -
+        in: path
+        name: uuid
+        description: ''
+        example: Ec8Dc425b-b61Bb-11C0b-3beCb-2DDaCAB97C97
+        required: true
+        schema:
+          type: string
+  /api/v2/journal:
+    get:
+      summary: "Fetch all Wallet Journal Records that belong to a\ngiven User qnd search based on parameters"
+      operationId: fetchAllWalletJournalRecordsThatBelongToAgivenUserQndSearchBasedOnParameters
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_ACCESS_TOKEN}'
+          schema:
+            type: string
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                date_start:
+                  type: string
+                  description: 'Must be a valid date.'
+                  example: '2023-03-15T22:50:54'
+                date_end:
+                  type: string
+                  description: 'Must be a valid date.'
+                  example: '2023-03-15T22:50:54'
 tags:
   -
     name: Endpoints

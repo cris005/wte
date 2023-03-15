@@ -3,10 +3,12 @@
 namespace App\Http\Requests\V1;
 
 use App\Http\Requests\AbstractTransactionRequest;
+use App\Models\User\Wallet;
 
 class BalanceInquiryRequest extends AbstractTransactionRequest
 {
     public string $transactionType = 'balanceInquiry';
+    public Wallet $wallet;
 
     /** @inheritDoc */
     public function rules(): array
@@ -25,5 +27,12 @@ class BalanceInquiryRequest extends AbstractTransactionRequest
                 'example' => '010010586384',
             ],
         ];
+    }
+
+    /** @inheritDoc */
+    public function authorize(): bool
+    {
+        $this->wallet = Wallet::fetch($this->validated('AccountNo'));
+        return true;
     }
 }

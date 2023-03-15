@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>Bizmoto Wallet Documentation</title>
+    <title>WTE Documentation</title>
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
 
@@ -32,9 +32,9 @@
         var useCsrf = Boolean();
         var csrfUrl = "/sanctum/csrf-cookie";
     </script>
-    <script src="../docs/js/tryitout-4.13.0.js"></script>
+    <script src="../docs/js/tryitout-4.16.0.js"></script>
 
-    <script src="../docs/js/theme-default-4.13.0.js"></script>
+    <script src="../docs/js/theme-default-4.16.0.js"></script>
 
 </head>
 
@@ -48,14 +48,14 @@
 </a>
 <div class="tocify-wrapper">
             <img src="../img/logo-white-bg.svg" alt="logo" class="logo" style="padding-top: 10px;" width="100%"/>
-    
+
             <div class="lang-selector">
                                             <button type="button" class="lang-button" data-language-name="bash">bash</button>
                                             <button type="button" class="lang-button" data-language-name="javascript">javascript</button>
                                             <button type="button" class="lang-button" data-language-name="php">php</button>
                                             <button type="button" class="lang-button" data-language-name="python">python</button>
                     </div>
-    
+
     <div class="search">
         <input type="text" class="search" id="input-search" placeholder="Search">
     </div>
@@ -76,34 +76,47 @@
                     <a href="#endpoints">Endpoints</a>
                 </li>
                                     <ul id="tocify-subheader-endpoints" class="tocify-subheader">
-                                                    <li class="tocify-item level-2" data-unique="endpoints-POSTapi-v1-rest-transfer">
-                                <a href="#endpoints-POSTapi-v1-rest-transfer">Execute the fund movements (credits and debits) required to
-complete the transaction associated to the provided Ref. No.</a>
+                                                    <li class="tocify-item level-2" data-unique="endpoints-GETapi-v2-wallet-balance--id-">
+                                <a href="#endpoints-GETapi-v2-wallet-balance--id-">Fetch the balance of a given Wallet</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-v1-rest-reverseTransaction">
-                                <a href="#endpoints-POSTapi-v1-rest-reverseTransaction">Reverse/refund a transaction that has been executed</a>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-v2-wallet-balance">
+                                <a href="#endpoints-GETapi-v2-wallet-balance">Fetch the current User's Wallet Balance(s)</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-v1-rest-balanceinquiry">
-                                <a href="#endpoints-POSTapi-v1-rest-balanceinquiry">Find the balance for the given Account number</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-v2-wallet-balance--account_no--">
-                                <a href="#endpoints-GETapi-v2-wallet-balance--account_no--">Fetch the current User's Wallet Balance(s)</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-v2-wallet--account_no-">
-                                <a href="#endpoints-GETapi-v2-wallet--account_no-">Fetch details of a User's specific Wallet</a>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-v2-wallet--id-">
+                                <a href="#endpoints-GETapi-v2-wallet--id-">Fetch the details of a given Wallet</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-GETapi-v2-wallet">
-                                <a href="#endpoints-GETapi-v2-wallet">Fetch details of all Wallets that belong to User</a>
+                                <a href="#endpoints-GETapi-v2-wallet">Fetch details of all Wallets that belong to the User</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-POSTapi-v2-transaction-transfer">
-                                <a href="#endpoints-POSTapi-v2-transaction-transfer">Execute the fund movements of a given Bizmoto Transaction</a>
+                                <a href="#endpoints-POSTapi-v2-transaction-transfer">Execute the fund movements of a given Transaction Record</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-v2-transaction-reverse">
-                                <a href="#endpoints-POSTapi-v2-transaction-reverse">Reverse/refund a transaction that has been executed</a>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-v2-transaction-wallet--id-">
+                                <a href="#endpoints-GETapi-v2-transaction-wallet--id-">Fetch all Transaction records that belong to a Wallet</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-v2-transaction--uuid-">
+                                <a href="#endpoints-GETapi-v2-transaction--uuid-">Fetch a specific Transaction record</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-GETapi-v2-transaction">
-                                <a href="#endpoints-GETapi-v2-transaction">Fetch all Wallet Journal Records that belong
-to a Transaction reference number</a>
+                                <a href="#endpoints-GETapi-v2-transaction">Fetch all Transaction records that belong to a User</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-v2-transaction">
+                                <a href="#endpoints-POSTapi-v2-transaction">Create a new Transaction record</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-v2-journal-transaction--uuid-">
+                                <a href="#endpoints-GETapi-v2-journal-transaction--uuid-">Fetch all Wallet Journal Records that belong to a
+given Transaction</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-v2-journal-wallet--id-">
+                                <a href="#endpoints-GETapi-v2-journal-wallet--id-">Fetch all Wallet Journal Records that belong to a
+given Wallet</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-v2-journal--uuid-">
+                                <a href="#endpoints-GETapi-v2-journal--uuid-">Fetch a specific Wallet Journal Record</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-v2-journal">
+                                <a href="#endpoints-GETapi-v2-journal">Fetch all Wallet Journal Records that belong to a
+given User qnd search based on parameters</a>
                             </li>
                                                                         </ul>
                             </ul>
@@ -116,7 +129,7 @@ to a Transaction reference number</a>
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: February 3, 2023</li>
+        <li>Last updated: March 15, 2023</li>
     </ul>
 </div>
 
@@ -132,258 +145,15 @@ to a Transaction reference number</a>
 You can switch the language used with the tabs at the top right (or from the nav menu at the top left on mobile).</aside>
 
         <h1 id="authenticating-requests">Authenticating requests</h1>
-<p>Authenticate requests to this API's endpoints by sending an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {YOUR_ACCESS_TOKEN}"</code></strong>.</p>
+<p>To authenticate requests, include an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {YOUR_ACCESS_TOKEN}"</code></strong>.</p>
 <p>All authenticated endpoints are marked with a <code>requires authentication</code> badge in the documentation below.</p>
 <p>You can retrieve your Access Token by performing an OAuth 2.0 authentication at the registered Authentication Server. Please contact your system administrator for more information.</p>
 
         <h1 id="endpoints">Endpoints</h1>
 
-    
-
-                                <h2 id="endpoints-POSTapi-v1-rest-transfer">Execute the fund movements (credits and debits) required to
-complete the transaction associated to the provided Ref. No.</h2>
-
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
 
 
-
-<span id="example-requests-POSTapi-v1-rest-transfer">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/v1/rest/transfer" \
-    --header "Authorization: Bearer {YOUR_ACCESS_TOKEN}" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --data "{
-    \"Source\": 10010586384,
-    \"Target\": 10010645288,
-    \"Amount\": 245.5,
-    \"Fee\": 10,
-    \"Accounts\": [
-        60001
-    ]
-}"
-</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/rest/transfer"
-);
-
-const headers = {
-    "Authorization": "Bearer {YOUR_ACCESS_TOKEN}",
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-let body = {
-    "Source": 10010586384,
-    "Target": 10010645288,
-    "Amount": 245.5,
-    "Fee": 10,
-    "Accounts": [
-        60001
-    ]
-};
-
-fetch(url, {
-    method: "POST",
-    headers,
-    body: JSON.stringify(body),
-}).then(response =&gt; response.json());</code></pre></div>
-
-
-<div class="php-example">
-    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$response = $client-&gt;post(
-    'http://localhost/api/v1/rest/transfer',
-    [
-        'headers' =&gt; [
-            'Authorization' =&gt; 'Bearer {YOUR_ACCESS_TOKEN}',
-            'Content-Type' =&gt; 'application/json',
-            'Accept' =&gt; 'application/json',
-        ],
-        'json' =&gt; [
-            'Source' =&gt; 10010586384.0,
-            'Target' =&gt; 10010645288.0,
-            'Amount' =&gt; 245.5,
-            'Fee' =&gt; 10.0,
-            'Accounts' =&gt; [
-                60001.0,
-            ],
-        ],
-    ]
-);
-$body = $response-&gt;getBody();
-print_r(json_decode((string) $body));</code></pre></div>
-
-
-<div class="python-example">
-    <pre><code class="language-python">import requests
-import json
-
-url = 'http://localhost/api/v1/rest/transfer'
-payload = {
-    "Source": 10010586384,
-    "Target": 10010645288,
-    "Amount": 245.5,
-    "Fee": 10,
-    "Accounts": [
-        60001
-    ]
-}
-headers = {
-  'Authorization': 'Bearer {YOUR_ACCESS_TOKEN}',
-  'Content-Type': 'application/json',
-  'Accept': 'application/json'
-}
-
-response = requests.request('POST', url, headers=headers, json=payload)
-response.json()</code></pre></div>
-
-</span>
-
-<span id="example-responses-POSTapi-v1-rest-transfer">
-</span>
-<span id="execution-results-POSTapi-v1-rest-transfer" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-POSTapi-v1-rest-transfer"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-v1-rest-transfer" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-POSTapi-v1-rest-transfer" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-v1-rest-transfer"></code></pre>
-</span>
-<form id="form-POSTapi-v1-rest-transfer" data-method="POST"
-      data-path="api/v1/rest/transfer"
-      data-authed="1"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-rest-transfer', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-v1-rest-transfer"
-                    onclick="tryItOut('POSTapi-v1-rest-transfer');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-v1-rest-transfer"
-                    onclick="cancelTryOut('POSTapi-v1-rest-transfer');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-v1-rest-transfer" hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-black">POST</small>
-            <b><code>api/v1/rest/transfer</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-               name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-rest-transfer"
-               value="Bearer {YOUR_ACCESS_TOKEN}"
-               data-component="header">
-    <br>
-<p>Example: <code>Bearer {YOUR_ACCESS_TOKEN}</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-               name="Content-Type"                data-endpoint="POSTapi-v1-rest-transfer"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-               name="Accept"                data-endpoint="POSTapi-v1-rest-transfer"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
-        <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>Source</code></b>&nbsp;&nbsp;
-<small>number</small>&nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               name="Source"                data-endpoint="POSTapi-v1-rest-transfer"
-               value="10010586384"
-               data-component="body">
-    <br>
-<p>The source Account Number. Example: <code>10010586384</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>Target</code></b>&nbsp;&nbsp;
-<small>number</small>&nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               name="Target"                data-endpoint="POSTapi-v1-rest-transfer"
-               value="10010645288"
-               data-component="body">
-    <br>
-<p>The target Account Number. Example: <code>10010645288</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>Amount</code></b>&nbsp;&nbsp;
-<small>number</small>&nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               name="Amount"                data-endpoint="POSTapi-v1-rest-transfer"
-               value="245.5"
-               data-component="body">
-    <br>
-<p>The amount to be transferred. Example: <code>245.5</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>Fee</code></b>&nbsp;&nbsp;
-<small>number</small>&nbsp;
-<i>optional</i> &nbsp;
-                <input type="number" style="display: none"
-               name="Fee"                data-endpoint="POSTapi-v1-rest-transfer"
-               value="10"
-               data-component="body">
-    <br>
-<p>The transaction's total fee (will be sent to the default Fee Account). If there are multiple fee recipients, leave this blank and fill out the &quot;Accounts&quot; parameter. Example: <code>10</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>Accounts</code></b>&nbsp;&nbsp;
-<small>number[]</small>&nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               name="Accounts[0]"                data-endpoint="POSTapi-v1-rest-transfer"
-               data-component="body">
-        <input type="number" style="display: none"
-               name="Accounts[1]"                data-endpoint="POSTapi-v1-rest-transfer"
-               data-component="body">
-    <br>
-<p>The Fee Accounts and respective fees for each account. Example: {&quot;0060001&quot;: 15.2, &quot;0070001&quot;: 12.8}.</p>
-        </div>
-        </form>
-
-                    <h2 id="endpoints-POSTapi-v1-rest-reverseTransaction">Reverse/refund a transaction that has been executed</h2>
+                                <h2 id="endpoints-GETapi-v2-wallet-balance--id-">Fetch the balance of a given Wallet</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -391,357 +161,13 @@ response.json()</code></pre></div>
 
 
 
-<span id="example-requests-POSTapi-v1-rest-reverseTransaction">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/v1/rest/reverseTransaction" \
-    --header "Authorization: Bearer {YOUR_ACCESS_TOKEN}" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --data "{
-    \"RefNum\": 168742
-}"
-</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/rest/reverseTransaction"
-);
-
-const headers = {
-    "Authorization": "Bearer {YOUR_ACCESS_TOKEN}",
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-let body = {
-    "RefNum": 168742
-};
-
-fetch(url, {
-    method: "POST",
-    headers,
-    body: JSON.stringify(body),
-}).then(response =&gt; response.json());</code></pre></div>
-
-
-<div class="php-example">
-    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$response = $client-&gt;post(
-    'http://localhost/api/v1/rest/reverseTransaction',
-    [
-        'headers' =&gt; [
-            'Authorization' =&gt; 'Bearer {YOUR_ACCESS_TOKEN}',
-            'Content-Type' =&gt; 'application/json',
-            'Accept' =&gt; 'application/json',
-        ],
-        'json' =&gt; [
-            'RefNum' =&gt; 168742,
-        ],
-    ]
-);
-$body = $response-&gt;getBody();
-print_r(json_decode((string) $body));</code></pre></div>
-
-
-<div class="python-example">
-    <pre><code class="language-python">import requests
-import json
-
-url = 'http://localhost/api/v1/rest/reverseTransaction'
-payload = {
-    "RefNum": 168742
-}
-headers = {
-  'Authorization': 'Bearer {YOUR_ACCESS_TOKEN}',
-  'Content-Type': 'application/json',
-  'Accept': 'application/json'
-}
-
-response = requests.request('POST', url, headers=headers, json=payload)
-response.json()</code></pre></div>
-
-</span>
-
-<span id="example-responses-POSTapi-v1-rest-reverseTransaction">
-</span>
-<span id="execution-results-POSTapi-v1-rest-reverseTransaction" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-POSTapi-v1-rest-reverseTransaction"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-v1-rest-reverseTransaction" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-POSTapi-v1-rest-reverseTransaction" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-v1-rest-reverseTransaction"></code></pre>
-</span>
-<form id="form-POSTapi-v1-rest-reverseTransaction" data-method="POST"
-      data-path="api/v1/rest/reverseTransaction"
-      data-authed="1"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-rest-reverseTransaction', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-v1-rest-reverseTransaction"
-                    onclick="tryItOut('POSTapi-v1-rest-reverseTransaction');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-v1-rest-reverseTransaction"
-                    onclick="cancelTryOut('POSTapi-v1-rest-reverseTransaction');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-v1-rest-reverseTransaction" hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-black">POST</small>
-            <b><code>api/v1/rest/reverseTransaction</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-               name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-rest-reverseTransaction"
-               value="Bearer {YOUR_ACCESS_TOKEN}"
-               data-component="header">
-    <br>
-<p>Example: <code>Bearer {YOUR_ACCESS_TOKEN}</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-               name="Content-Type"                data-endpoint="POSTapi-v1-rest-reverseTransaction"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-               name="Accept"                data-endpoint="POSTapi-v1-rest-reverseTransaction"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
-        <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>RefNum</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               name="RefNum"                data-endpoint="POSTapi-v1-rest-reverseTransaction"
-               value="168742"
-               data-component="body">
-    <br>
-<p>The journal record's Reference Number. Example: <code>168742</code></p>
-        </div>
-        </form>
-
-                    <h2 id="endpoints-POSTapi-v1-rest-balanceinquiry">Find the balance for the given Account number</h2>
-
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
-
-
-
-<span id="example-requests-POSTapi-v1-rest-balanceinquiry">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/v1/rest/balanceinquiry" \
-    --header "Authorization: Bearer {YOUR_ACCESS_TOKEN}" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --data "{
-    \"AccountNo\": 10010586384
-}"
-</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/rest/balanceinquiry"
-);
-
-const headers = {
-    "Authorization": "Bearer {YOUR_ACCESS_TOKEN}",
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-let body = {
-    "AccountNo": 10010586384
-};
-
-fetch(url, {
-    method: "POST",
-    headers,
-    body: JSON.stringify(body),
-}).then(response =&gt; response.json());</code></pre></div>
-
-
-<div class="php-example">
-    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$response = $client-&gt;post(
-    'http://localhost/api/v1/rest/balanceinquiry',
-    [
-        'headers' =&gt; [
-            'Authorization' =&gt; 'Bearer {YOUR_ACCESS_TOKEN}',
-            'Content-Type' =&gt; 'application/json',
-            'Accept' =&gt; 'application/json',
-        ],
-        'json' =&gt; [
-            'AccountNo' =&gt; 10010586384.0,
-        ],
-    ]
-);
-$body = $response-&gt;getBody();
-print_r(json_decode((string) $body));</code></pre></div>
-
-
-<div class="python-example">
-    <pre><code class="language-python">import requests
-import json
-
-url = 'http://localhost/api/v1/rest/balanceinquiry'
-payload = {
-    "AccountNo": 10010586384
-}
-headers = {
-  'Authorization': 'Bearer {YOUR_ACCESS_TOKEN}',
-  'Content-Type': 'application/json',
-  'Accept': 'application/json'
-}
-
-response = requests.request('POST', url, headers=headers, json=payload)
-response.json()</code></pre></div>
-
-</span>
-
-<span id="example-responses-POSTapi-v1-rest-balanceinquiry">
-</span>
-<span id="execution-results-POSTapi-v1-rest-balanceinquiry" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-POSTapi-v1-rest-balanceinquiry"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-v1-rest-balanceinquiry" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-POSTapi-v1-rest-balanceinquiry" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-v1-rest-balanceinquiry"></code></pre>
-</span>
-<form id="form-POSTapi-v1-rest-balanceinquiry" data-method="POST"
-      data-path="api/v1/rest/balanceinquiry"
-      data-authed="1"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-rest-balanceinquiry', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-v1-rest-balanceinquiry"
-                    onclick="tryItOut('POSTapi-v1-rest-balanceinquiry');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-v1-rest-balanceinquiry"
-                    onclick="cancelTryOut('POSTapi-v1-rest-balanceinquiry');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-v1-rest-balanceinquiry" hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-black">POST</small>
-            <b><code>api/v1/rest/balanceinquiry</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-               name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-rest-balanceinquiry"
-               value="Bearer {YOUR_ACCESS_TOKEN}"
-               data-component="header">
-    <br>
-<p>Example: <code>Bearer {YOUR_ACCESS_TOKEN}</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-               name="Content-Type"                data-endpoint="POSTapi-v1-rest-balanceinquiry"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-               name="Accept"                data-endpoint="POSTapi-v1-rest-balanceinquiry"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
-        <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>AccountNo</code></b>&nbsp;&nbsp;
-<small>number</small>&nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               name="AccountNo"                data-endpoint="POSTapi-v1-rest-balanceinquiry"
-               value="10010586384"
-               data-component="body">
-    <br>
-<p>The Account Number for which the balance is being fetched. Example: <code>10010586384</code></p>
-        </div>
-        </form>
-
-                    <h2 id="endpoints-GETapi-v2-wallet-balance--account_no--">Fetch the current User&#039;s Wallet Balance(s)</h2>
-
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
-
-
-
-<span id="example-requests-GETapi-v2-wallet-balance--account_no--">
+<span id="example-requests-GETapi-v2-wallet-balance--id-">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/v2/wallet/balance/et" \
+    --get "http://localhost/api/v2/wallet/balance/5" \
     --header "Authorization: Bearer {YOUR_ACCESS_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -749,7 +175,7 @@ response.json()</code></pre></div>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v2/wallet/balance/et"
+    "http://localhost/api/v2/wallet/balance/5"
 );
 
 const headers = {
@@ -767,7 +193,7 @@ fetch(url, {
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'http://localhost/api/v2/wallet/balance/et',
+    'http://localhost/api/v2/wallet/balance/5',
     [
         'headers' =&gt; [
             'Authorization' =&gt; 'Bearer {YOUR_ACCESS_TOKEN}',
@@ -784,7 +210,7 @@ print_r(json_decode((string) $body));</code></pre></div>
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://localhost/api/v2/wallet/balance/et'
+url = 'http://localhost/api/v2/wallet/balance/5'
 headers = {
   'Authorization': 'Bearer {YOUR_ACCESS_TOKEN}',
   'Content-Type': 'application/json',
@@ -796,72 +222,45 @@ response.json()</code></pre></div>
 
 </span>
 
-<span id="example-responses-GETapi-v2-wallet-balance--account_no--">
-            <blockquote>
-            <p>Example response (401):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-x-ratelimit-limit: 60
-x-ratelimit-remaining: 59
-access-control-allow-origin: *
- </code></pre></details>         <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;status&quot;: 401,
-    &quot;title&quot;: &quot;Unauthorized&quot;,
-    &quot;type&quot;: &quot;https://www.rfc-editor.org/rfc/rfc9110.html&quot;,
-    &quot;message&quot;: &quot;You are unauthenticated and therefore unauthorized to access this resource.&quot;,
-    &quot;details&quot;: &quot;The access token provided is either expired or invalid.&quot;,
-    &quot;_links&quot;: {
-        &quot;self&quot;: {
-            &quot;href&quot;: &quot;http://localhost/api/v2/wallet/balance/et&quot;
-        }
-    }
-}</code>
- </pre>
+<span id="example-responses-GETapi-v2-wallet-balance--id-">
     </span>
-<span id="execution-results-GETapi-v2-wallet-balance--account_no--" hidden>
+<span id="execution-results-GETapi-v2-wallet-balance--id-" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-GETapi-v2-wallet-balance--account_no--"></span>:
+                id="execution-response-status-GETapi-v2-wallet-balance--id-"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-v2-wallet-balance--account_no--" style="max-height: 400px;"></code></pre>
+    <pre class="json"><code id="execution-response-content-GETapi-v2-wallet-balance--id-" style="max-height: 400px;"></code></pre>
 </span>
-<span id="execution-error-GETapi-v2-wallet-balance--account_no--" hidden>
+<span id="execution-error-GETapi-v2-wallet-balance--id-" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-v2-wallet-balance--account_no--"></code></pre>
+    <pre><code id="execution-error-message-GETapi-v2-wallet-balance--id-"></code></pre>
 </span>
-<form id="form-GETapi-v2-wallet-balance--account_no--" data-method="GET"
-      data-path="api/v2/wallet/balance/{account_no?}"
+<form id="form-GETapi-v2-wallet-balance--id-" data-method="GET"
+      data-path="api/v2/wallet/balance/{id}"
       data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-v2-wallet-balance--account_no--', this);">
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v2-wallet-balance--id-', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-v2-wallet-balance--account_no--"
-                    onclick="tryItOut('GETapi-v2-wallet-balance--account_no--');">Try it out ⚡
+                    id="btn-tryout-GETapi-v2-wallet-balance--id-"
+                    onclick="tryItOut('GETapi-v2-wallet-balance--id-');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-v2-wallet-balance--account_no--"
-                    onclick="cancelTryOut('GETapi-v2-wallet-balance--account_no--');" hidden>Cancel 🛑
+                    id="btn-canceltryout-GETapi-v2-wallet-balance--id-"
+                    onclick="cancelTryOut('GETapi-v2-wallet-balance--id-');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-v2-wallet-balance--account_no--" hidden>Send Request 💥
+                    id="btn-executetryout-GETapi-v2-wallet-balance--id-" hidden>Send Request 💥
             </button>
             </h3>
             <p>
             <small class="badge badge-green">GET</small>
-            <b><code>api/v2/wallet/balance/{account_no?}</code></b>
+            <b><code>api/v2/wallet/balance/{id}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
@@ -869,7 +268,7 @@ access-control-allow-origin: *
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-               name="Authorization" class="auth-value"               data-endpoint="GETapi-v2-wallet-balance--account_no--"
+               name="Authorization" class="auth-value"               data-endpoint="GETapi-v2-wallet-balance--id-"
                value="Bearer {YOUR_ACCESS_TOKEN}"
                data-component="header">
     <br>
@@ -880,7 +279,7 @@ access-control-allow-origin: *
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-               name="Content-Type"                data-endpoint="GETapi-v2-wallet-balance--account_no--"
+               name="Content-Type"                data-endpoint="GETapi-v2-wallet-balance--id-"
                value="application/json"
                data-component="header">
     <br>
@@ -891,7 +290,7 @@ access-control-allow-origin: *
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-               name="Accept"                data-endpoint="GETapi-v2-wallet-balance--account_no--"
+               name="Accept"                data-endpoint="GETapi-v2-wallet-balance--id-"
                value="application/json"
                data-component="header">
     <br>
@@ -899,19 +298,19 @@ access-control-allow-origin: *
             </div>
                         <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
                     <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>account_no</code></b>&nbsp;&nbsp;
+                <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
-<i>optional</i> &nbsp;
+ &nbsp;
                 <input type="text" style="display: none"
-               name="account_no"                data-endpoint="GETapi-v2-wallet-balance--account_no--"
-               value="et"
+               name="id"                data-endpoint="GETapi-v2-wallet-balance--id-"
+               value="5"
                data-component="url">
     <br>
-<p>Example: <code>et</code></p>
+<p>The ID of the balance. Example: <code>5</code></p>
             </div>
                     </form>
 
-                    <h2 id="endpoints-GETapi-v2-wallet--account_no-">Fetch details of a User&#039;s specific Wallet</h2>
+                    <h2 id="endpoints-GETapi-v2-wallet-balance">Fetch the current User&#039;s Wallet Balance(s)</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -919,13 +318,185 @@ access-control-allow-origin: *
 
 
 
-<span id="example-requests-GETapi-v2-wallet--account_no-">
+<span id="example-requests-GETapi-v2-wallet-balance">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/v2/wallet/voluptate" \
+    --get "http://localhost/api/v2/wallet/balance" \
+    --header "Authorization: Bearer {YOUR_ACCESS_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"account_no\": 10010586384
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/v2/wallet/balance"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_ACCESS_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "account_no": 10010586384
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://localhost/api/v2/wallet/balance',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_ACCESS_TOKEN}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'account_no' =&gt; 10010586384.0,
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost/api/v2/wallet/balance'
+payload = {
+    "account_no": 10010586384
+}
+headers = {
+  'Authorization': 'Bearer {YOUR_ACCESS_TOKEN}',
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('GET', url, headers=headers, json=payload)
+response.json()</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v2-wallet-balance">
+    </span>
+<span id="execution-results-GETapi-v2-wallet-balance" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v2-wallet-balance"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v2-wallet-balance" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v2-wallet-balance" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v2-wallet-balance"></code></pre>
+</span>
+<form id="form-GETapi-v2-wallet-balance" data-method="GET"
+      data-path="api/v2/wallet/balance"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v2-wallet-balance', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v2-wallet-balance"
+                    onclick="tryItOut('GETapi-v2-wallet-balance');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v2-wallet-balance"
+                    onclick="cancelTryOut('GETapi-v2-wallet-balance');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v2-wallet-balance" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v2/wallet/balance</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="Authorization" class="auth-value"               data-endpoint="GETapi-v2-wallet-balance"
+               value="Bearer {YOUR_ACCESS_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_ACCESS_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="Content-Type"                data-endpoint="GETapi-v2-wallet-balance"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="Accept"                data-endpoint="GETapi-v2-wallet-balance"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>account_no</code></b>&nbsp;&nbsp;
+<small>number</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               name="account_no"                data-endpoint="GETapi-v2-wallet-balance"
+               value="10010586384"
+               data-component="body">
+    <br>
+<p>The Wallet's Account Number to be fetched. Will default to all accounts, if not provided. Example: <code>10010586384</code></p>
+        </div>
+        </form>
+
+                    <h2 id="endpoints-GETapi-v2-wallet--id-">Fetch the details of a given Wallet</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v2-wallet--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/api/v2/wallet/55" \
     --header "Authorization: Bearer {YOUR_ACCESS_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -933,7 +504,7 @@ access-control-allow-origin: *
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v2/wallet/voluptate"
+    "http://localhost/api/v2/wallet/55"
 );
 
 const headers = {
@@ -951,7 +522,7 @@ fetch(url, {
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'http://localhost/api/v2/wallet/voluptate',
+    'http://localhost/api/v2/wallet/55',
     [
         'headers' =&gt; [
             'Authorization' =&gt; 'Bearer {YOUR_ACCESS_TOKEN}',
@@ -968,7 +539,7 @@ print_r(json_decode((string) $body));</code></pre></div>
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://localhost/api/v2/wallet/voluptate'
+url = 'http://localhost/api/v2/wallet/55'
 headers = {
   'Authorization': 'Bearer {YOUR_ACCESS_TOKEN}',
   'Content-Type': 'application/json',
@@ -980,72 +551,45 @@ response.json()</code></pre></div>
 
 </span>
 
-<span id="example-responses-GETapi-v2-wallet--account_no-">
-            <blockquote>
-            <p>Example response (401):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-x-ratelimit-limit: 60
-x-ratelimit-remaining: 58
-access-control-allow-origin: *
- </code></pre></details>         <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;status&quot;: 401,
-    &quot;title&quot;: &quot;Unauthorized&quot;,
-    &quot;type&quot;: &quot;https://www.rfc-editor.org/rfc/rfc9110.html&quot;,
-    &quot;message&quot;: &quot;You are unauthenticated and therefore unauthorized to access this resource.&quot;,
-    &quot;details&quot;: &quot;The access token provided is either expired or invalid.&quot;,
-    &quot;_links&quot;: {
-        &quot;self&quot;: {
-            &quot;href&quot;: &quot;http://localhost/api/v2/wallet/voluptate&quot;
-        }
-    }
-}</code>
- </pre>
+<span id="example-responses-GETapi-v2-wallet--id-">
     </span>
-<span id="execution-results-GETapi-v2-wallet--account_no-" hidden>
+<span id="execution-results-GETapi-v2-wallet--id-" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-GETapi-v2-wallet--account_no-"></span>:
+                id="execution-response-status-GETapi-v2-wallet--id-"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-v2-wallet--account_no-" style="max-height: 400px;"></code></pre>
+    <pre class="json"><code id="execution-response-content-GETapi-v2-wallet--id-" style="max-height: 400px;"></code></pre>
 </span>
-<span id="execution-error-GETapi-v2-wallet--account_no-" hidden>
+<span id="execution-error-GETapi-v2-wallet--id-" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-v2-wallet--account_no-"></code></pre>
+    <pre><code id="execution-error-message-GETapi-v2-wallet--id-"></code></pre>
 </span>
-<form id="form-GETapi-v2-wallet--account_no-" data-method="GET"
-      data-path="api/v2/wallet/{account_no}"
+<form id="form-GETapi-v2-wallet--id-" data-method="GET"
+      data-path="api/v2/wallet/{id}"
       data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-v2-wallet--account_no-', this);">
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v2-wallet--id-', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-v2-wallet--account_no-"
-                    onclick="tryItOut('GETapi-v2-wallet--account_no-');">Try it out ⚡
+                    id="btn-tryout-GETapi-v2-wallet--id-"
+                    onclick="tryItOut('GETapi-v2-wallet--id-');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-v2-wallet--account_no-"
-                    onclick="cancelTryOut('GETapi-v2-wallet--account_no-');" hidden>Cancel 🛑
+                    id="btn-canceltryout-GETapi-v2-wallet--id-"
+                    onclick="cancelTryOut('GETapi-v2-wallet--id-');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-v2-wallet--account_no-" hidden>Send Request 💥
+                    id="btn-executetryout-GETapi-v2-wallet--id-" hidden>Send Request 💥
             </button>
             </h3>
             <p>
             <small class="badge badge-green">GET</small>
-            <b><code>api/v2/wallet/{account_no}</code></b>
+            <b><code>api/v2/wallet/{id}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
@@ -1053,7 +597,7 @@ access-control-allow-origin: *
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-               name="Authorization" class="auth-value"               data-endpoint="GETapi-v2-wallet--account_no-"
+               name="Authorization" class="auth-value"               data-endpoint="GETapi-v2-wallet--id-"
                value="Bearer {YOUR_ACCESS_TOKEN}"
                data-component="header">
     <br>
@@ -1064,7 +608,7 @@ access-control-allow-origin: *
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-               name="Content-Type"                data-endpoint="GETapi-v2-wallet--account_no-"
+               name="Content-Type"                data-endpoint="GETapi-v2-wallet--id-"
                value="application/json"
                data-component="header">
     <br>
@@ -1075,7 +619,7 @@ access-control-allow-origin: *
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-               name="Accept"                data-endpoint="GETapi-v2-wallet--account_no-"
+               name="Accept"                data-endpoint="GETapi-v2-wallet--id-"
                value="application/json"
                data-component="header">
     <br>
@@ -1083,19 +627,19 @@ access-control-allow-origin: *
             </div>
                         <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
                     <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>account_no</code></b>&nbsp;&nbsp;
+                <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-               name="account_no"                data-endpoint="GETapi-v2-wallet--account_no-"
-               value="voluptate"
+               name="id"                data-endpoint="GETapi-v2-wallet--id-"
+               value="55"
                data-component="url">
     <br>
-<p>Example: <code>voluptate</code></p>
+<p>The ID of the wallet. Example: <code>55</code></p>
             </div>
                     </form>
 
-                    <h2 id="endpoints-GETapi-v2-wallet">Fetch details of all Wallets that belong to User</h2>
+                    <h2 id="endpoints-GETapi-v2-wallet">Fetch details of all Wallets that belong to the User</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -1112,7 +656,11 @@ access-control-allow-origin: *
     --get "http://localhost/api/v2/wallet" \
     --header "Authorization: Bearer {YOUR_ACCESS_TOKEN}" \
     --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
+    --header "Accept: application/json" \
+    --data "{
+    \"account_no\": 10010586384
+}"
+</code></pre></div>
 
 
 <div class="javascript-example">
@@ -1126,9 +674,14 @@ const headers = {
     "Accept": "application/json",
 };
 
+let body = {
+    "account_no": 10010586384
+};
+
 fetch(url, {
     method: "GET",
     headers,
+    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
 
 
@@ -1142,6 +695,9 @@ $response = $client-&gt;get(
             'Content-Type' =&gt; 'application/json',
             'Accept' =&gt; 'application/json',
         ],
+        'json' =&gt; [
+            'account_no' =&gt; 10010586384.0,
+        ],
     ]
 );
 $body = $response-&gt;getBody();
@@ -1153,45 +709,21 @@ print_r(json_decode((string) $body));</code></pre></div>
 import json
 
 url = 'http://localhost/api/v2/wallet'
+payload = {
+    "account_no": 10010586384
+}
 headers = {
   'Authorization': 'Bearer {YOUR_ACCESS_TOKEN}',
   'Content-Type': 'application/json',
   'Accept': 'application/json'
 }
 
-response = requests.request('GET', url, headers=headers)
+response = requests.request('GET', url, headers=headers, json=payload)
 response.json()</code></pre></div>
 
 </span>
 
 <span id="example-responses-GETapi-v2-wallet">
-            <blockquote>
-            <p>Example response (401):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-x-ratelimit-limit: 60
-x-ratelimit-remaining: 57
-access-control-allow-origin: *
- </code></pre></details>         <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;status&quot;: 401,
-    &quot;title&quot;: &quot;Unauthorized&quot;,
-    &quot;type&quot;: &quot;https://www.rfc-editor.org/rfc/rfc9110.html&quot;,
-    &quot;message&quot;: &quot;You are unauthenticated and therefore unauthorized to access this resource.&quot;,
-    &quot;details&quot;: &quot;The access token provided is either expired or invalid.&quot;,
-    &quot;_links&quot;: {
-        &quot;self&quot;: {
-            &quot;href&quot;: &quot;http://localhost/api/v2/wallet&quot;
-        }
-    }
-}</code>
- </pre>
     </span>
 <span id="execution-results-GETapi-v2-wallet" hidden>
     <blockquote>Received response<span
@@ -1265,9 +797,21 @@ access-control-allow-origin: *
     <br>
 <p>Example: <code>application/json</code></p>
             </div>
-                        </form>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>account_no</code></b>&nbsp;&nbsp;
+<small>number</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               name="account_no"                data-endpoint="GETapi-v2-wallet"
+               value="10010586384"
+               data-component="body">
+    <br>
+<p>The Wallet's Account Number to be fetched. Will default to all accounts, if not provided. Example: <code>10010586384</code></p>
+        </div>
+        </form>
 
-                    <h2 id="endpoints-POSTapi-v2-transaction-transfer">Execute the fund movements of a given Bizmoto Transaction</h2>
+                    <h2 id="endpoints-POSTapi-v2-transaction-transfer">Execute the fund movements of a given Transaction Record</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -1286,7 +830,7 @@ access-control-allow-origin: *
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"transaction_uuid\": \"729a1f81-a73b-32cb-8f17-a304781dd491\"
+    \"transaction_uuid\": \"af02664a-0c55-370b-a0b6-e685d9eb2d17\"
 }"
 </code></pre></div>
 
@@ -1303,7 +847,7 @@ const headers = {
 };
 
 let body = {
-    "transaction_uuid": "729a1f81-a73b-32cb-8f17-a304781dd491"
+    "transaction_uuid": "af02664a-0c55-370b-a0b6-e685d9eb2d17"
 };
 
 fetch(url, {
@@ -1324,7 +868,7 @@ $response = $client-&gt;post(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'transaction_uuid' =&gt; '729a1f81-a73b-32cb-8f17-a304781dd491',
+            'transaction_uuid' =&gt; 'af02664a-0c55-370b-a0b6-e685d9eb2d17',
         ],
     ]
 );
@@ -1338,7 +882,7 @@ import json
 
 url = 'http://localhost/api/v2/transaction/transfer'
 payload = {
-    "transaction_uuid": "729a1f81-a73b-32cb-8f17-a304781dd491"
+    "transaction_uuid": "af02664a-0c55-370b-a0b6-e685d9eb2d17"
 }
 headers = {
   'Authorization': 'Bearer {YOUR_ACCESS_TOKEN}',
@@ -1352,7 +896,13 @@ response.json()</code></pre></div>
 </span>
 
 <span id="example-responses-POSTapi-v2-transaction-transfer">
-</span>
+            <blockquote>
+            <p>Example response (204):</p>
+        </blockquote>
+                <pre>
+<code>[Empty response]</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-v2-transaction-transfer" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-v2-transaction-transfer"></span>:
@@ -1432,14 +982,14 @@ response.json()</code></pre></div>
  &nbsp;
                 <input type="text" style="display: none"
                name="transaction_uuid"                data-endpoint="POSTapi-v2-transaction-transfer"
-               value="729a1f81-a73b-32cb-8f17-a304781dd491"
+               value="af02664a-0c55-370b-a0b6-e685d9eb2d17"
                data-component="body">
     <br>
-<p>Must be a valid UUID. Example: <code>729a1f81-a73b-32cb-8f17-a304781dd491</code></p>
+<p>Must be a valid UUID. Example: <code>af02664a-0c55-370b-a0b6-e685d9eb2d17</code></p>
         </div>
         </form>
 
-                    <h2 id="endpoints-POSTapi-v2-transaction-reverse">Reverse/refund a transaction that has been executed</h2>
+                    <h2 id="endpoints-GETapi-v2-transaction-wallet--id-">Fetch all Transaction records that belong to a Wallet</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -1447,25 +997,26 @@ response.json()</code></pre></div>
 
 
 
-<span id="example-requests-POSTapi-v2-transaction-reverse">
+<span id="example-requests-GETapi-v2-transaction-wallet--id-">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
-    <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/v2/transaction/reverse" \
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/api/v2/transaction/wallet/7414846" \
     --header "Authorization: Bearer {YOUR_ACCESS_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"transaction_uuid\": \"e7a98c3f-405a-3dd2-bcd0-d4db547ecf7c\"
+    \"date_start\": \"2023-03-15T22:50:54\",
+    \"date_end\": \"2023-03-15T22:50:54\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v2/transaction/reverse"
+    "http://localhost/api/v2/transaction/wallet/7414846"
 );
 
 const headers = {
@@ -1475,11 +1026,12 @@ const headers = {
 };
 
 let body = {
-    "transaction_uuid": "e7a98c3f-405a-3dd2-bcd0-d4db547ecf7c"
+    "date_start": "2023-03-15T22:50:54",
+    "date_end": "2023-03-15T22:50:54"
 };
 
 fetch(url, {
-    method: "POST",
+    method: "GET",
     headers,
     body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
@@ -1487,8 +1039,8 @@ fetch(url, {
 
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$response = $client-&gt;post(
-    'http://localhost/api/v2/transaction/reverse',
+$response = $client-&gt;get(
+    'http://localhost/api/v2/transaction/wallet/7414846',
     [
         'headers' =&gt; [
             'Authorization' =&gt; 'Bearer {YOUR_ACCESS_TOKEN}',
@@ -1496,7 +1048,8 @@ $response = $client-&gt;post(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'transaction_uuid' =&gt; 'e7a98c3f-405a-3dd2-bcd0-d4db547ecf7c',
+            'date_start' =&gt; '2023-03-15T22:50:54',
+            'date_end' =&gt; '2023-03-15T22:50:54',
         ],
     ]
 );
@@ -1508,9 +1061,10 @@ print_r(json_decode((string) $body));</code></pre></div>
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://localhost/api/v2/transaction/reverse'
+url = 'http://localhost/api/v2/transaction/wallet/7414846'
 payload = {
-    "transaction_uuid": "e7a98c3f-405a-3dd2-bcd0-d4db547ecf7c"
+    "date_start": "2023-03-15T22:50:54",
+    "date_end": "2023-03-15T22:50:54"
 }
 headers = {
   'Authorization': 'Bearer {YOUR_ACCESS_TOKEN}',
@@ -1518,50 +1072,50 @@ headers = {
   'Accept': 'application/json'
 }
 
-response = requests.request('POST', url, headers=headers, json=payload)
+response = requests.request('GET', url, headers=headers, json=payload)
 response.json()</code></pre></div>
 
 </span>
 
-<span id="example-responses-POSTapi-v2-transaction-reverse">
-</span>
-<span id="execution-results-POSTapi-v2-transaction-reverse" hidden>
+<span id="example-responses-GETapi-v2-transaction-wallet--id-">
+    </span>
+<span id="execution-results-GETapi-v2-transaction-wallet--id-" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-POSTapi-v2-transaction-reverse"></span>:
+                id="execution-response-status-GETapi-v2-transaction-wallet--id-"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-v2-transaction-reverse" style="max-height: 400px;"></code></pre>
+    <pre class="json"><code id="execution-response-content-GETapi-v2-transaction-wallet--id-" style="max-height: 400px;"></code></pre>
 </span>
-<span id="execution-error-POSTapi-v2-transaction-reverse" hidden>
+<span id="execution-error-GETapi-v2-transaction-wallet--id-" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-v2-transaction-reverse"></code></pre>
+    <pre><code id="execution-error-message-GETapi-v2-transaction-wallet--id-"></code></pre>
 </span>
-<form id="form-POSTapi-v2-transaction-reverse" data-method="POST"
-      data-path="api/v2/transaction/reverse"
+<form id="form-GETapi-v2-transaction-wallet--id-" data-method="GET"
+      data-path="api/v2/transaction/wallet/{id}"
       data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v2-transaction-reverse', this);">
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v2-transaction-wallet--id-', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-v2-transaction-reverse"
-                    onclick="tryItOut('POSTapi-v2-transaction-reverse');">Try it out ⚡
+                    id="btn-tryout-GETapi-v2-transaction-wallet--id-"
+                    onclick="tryItOut('GETapi-v2-transaction-wallet--id-');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-v2-transaction-reverse"
-                    onclick="cancelTryOut('POSTapi-v2-transaction-reverse');" hidden>Cancel 🛑
+                    id="btn-canceltryout-GETapi-v2-transaction-wallet--id-"
+                    onclick="cancelTryOut('GETapi-v2-transaction-wallet--id-');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-v2-transaction-reverse" hidden>Send Request 💥
+                    id="btn-executetryout-GETapi-v2-transaction-wallet--id-" hidden>Send Request 💥
             </button>
             </h3>
             <p>
-            <small class="badge badge-black">POST</small>
-            <b><code>api/v2/transaction/reverse</code></b>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v2/transaction/wallet/{id}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
@@ -1569,7 +1123,7 @@ response.json()</code></pre></div>
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-               name="Authorization" class="auth-value"               data-endpoint="POSTapi-v2-transaction-reverse"
+               name="Authorization" class="auth-value"               data-endpoint="GETapi-v2-transaction-wallet--id-"
                value="Bearer {YOUR_ACCESS_TOKEN}"
                data-component="header">
     <br>
@@ -1580,7 +1134,7 @@ response.json()</code></pre></div>
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-               name="Content-Type"                data-endpoint="POSTapi-v2-transaction-reverse"
+               name="Content-Type"                data-endpoint="GETapi-v2-transaction-wallet--id-"
                value="application/json"
                data-component="header">
     <br>
@@ -1591,28 +1145,269 @@ response.json()</code></pre></div>
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-               name="Accept"                data-endpoint="POSTapi-v2-transaction-reverse"
+               name="Accept"                data-endpoint="GETapi-v2-transaction-wallet--id-"
                value="application/json"
                data-component="header">
     <br>
 <p>Example: <code>application/json</code></p>
             </div>
-                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
-        <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>transaction_uuid</code></b>&nbsp;&nbsp;
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-               name="transaction_uuid"                data-endpoint="POSTapi-v2-transaction-reverse"
-               value="e7a98c3f-405a-3dd2-bcd0-d4db547ecf7c"
+               name="id"                data-endpoint="GETapi-v2-transaction-wallet--id-"
+               value="7414846"
+               data-component="url">
+    <br>
+<p>The ID of the wallet. Example: <code>7414846</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>date_start</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+               name="date_start"                data-endpoint="GETapi-v2-transaction-wallet--id-"
+               value="2023-03-15T22:50:54"
                data-component="body">
     <br>
-<p>Must be a valid UUID. Example: <code>e7a98c3f-405a-3dd2-bcd0-d4db547ecf7c</code></p>
+<p>Must be a valid date. Example: <code>2023-03-15T22:50:54</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>date_end</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+               name="date_end"                data-endpoint="GETapi-v2-transaction-wallet--id-"
+               value="2023-03-15T22:50:54"
+               data-component="body">
+    <br>
+<p>Must be a valid date. Example: <code>2023-03-15T22:50:54</code></p>
         </div>
         </form>
 
-                    <h2 id="endpoints-GETapi-v2-transaction">Fetch all Wallet Journal Records that belong
-to a Transaction reference number</h2>
+                    <h2 id="endpoints-GETapi-v2-transaction--uuid-">Fetch a specific Transaction record</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v2-transaction--uuid-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/api/v2/transaction/2efD91B7b-6942b-3cFFb-22E1b-53e4a7a6c18D" \
+    --header "Authorization: Bearer {YOUR_ACCESS_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"include_fees\": true,
+    \"include_meta\": true
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/v2/transaction/2efD91B7b-6942b-3cFFb-22E1b-53e4a7a6c18D"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_ACCESS_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "include_fees": true,
+    "include_meta": true
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://localhost/api/v2/transaction/2efD91B7b-6942b-3cFFb-22E1b-53e4a7a6c18D',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_ACCESS_TOKEN}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'include_fees' =&gt; true,
+            'include_meta' =&gt; true,
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost/api/v2/transaction/2efD91B7b-6942b-3cFFb-22E1b-53e4a7a6c18D'
+payload = {
+    "include_fees": true,
+    "include_meta": true
+}
+headers = {
+  'Authorization': 'Bearer {YOUR_ACCESS_TOKEN}',
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('GET', url, headers=headers, json=payload)
+response.json()</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v2-transaction--uuid-">
+    </span>
+<span id="execution-results-GETapi-v2-transaction--uuid-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v2-transaction--uuid-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v2-transaction--uuid-" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v2-transaction--uuid-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v2-transaction--uuid-"></code></pre>
+</span>
+<form id="form-GETapi-v2-transaction--uuid-" data-method="GET"
+      data-path="api/v2/transaction/{uuid}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v2-transaction--uuid-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v2-transaction--uuid-"
+                    onclick="tryItOut('GETapi-v2-transaction--uuid-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v2-transaction--uuid-"
+                    onclick="cancelTryOut('GETapi-v2-transaction--uuid-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v2-transaction--uuid-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v2/transaction/{uuid}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="Authorization" class="auth-value"               data-endpoint="GETapi-v2-transaction--uuid-"
+               value="Bearer {YOUR_ACCESS_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_ACCESS_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="Content-Type"                data-endpoint="GETapi-v2-transaction--uuid-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="Accept"                data-endpoint="GETapi-v2-transaction--uuid-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>uuid</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="uuid"                data-endpoint="GETapi-v2-transaction--uuid-"
+               value="2efD91B7b-6942b-3cFFb-22E1b-53e4a7a6c18D"
+               data-component="url">
+    <br>
+<p>Example: <code>2efD91B7b-6942b-3cFFb-22E1b-53e4a7a6c18D</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>include_fees</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+                <label data-endpoint="GETapi-v2-transaction--uuid-" style="display: none">
+            <input type="radio" name="include_fees"
+                   value="true"
+                   data-endpoint="GETapi-v2-transaction--uuid-"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="GETapi-v2-transaction--uuid-" style="display: none">
+            <input type="radio" name="include_fees"
+                   value="false"
+                   data-endpoint="GETapi-v2-transaction--uuid-"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>Example: <code>true</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>include_meta</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+                <label data-endpoint="GETapi-v2-transaction--uuid-" style="display: none">
+            <input type="radio" name="include_meta"
+                   value="true"
+                   data-endpoint="GETapi-v2-transaction--uuid-"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="GETapi-v2-transaction--uuid-" style="display: none">
+            <input type="radio" name="include_meta"
+                   value="false"
+                   data-endpoint="GETapi-v2-transaction--uuid-"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>Example: <code>true</code></p>
+        </div>
+        </form>
+
+                    <h2 id="endpoints-GETapi-v2-transaction">Fetch all Transaction records that belong to a User</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -1631,11 +1426,8 @@ to a Transaction reference number</h2>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"transaction_uuid\": \"7c65daa7-cb86-3e04-baa4-4ea089abd534\",
-    \"date_start\": \"2023-02-03T02:10:39\",
-    \"date_end\": \"2023-02-03T02:10:39\",
-    \"include_debits\": false,
-    \"include_credits\": false
+    \"date_start\": \"2023-03-15T22:50:54\",
+    \"date_end\": \"2023-03-15T22:50:54\"
 }"
 </code></pre></div>
 
@@ -1652,11 +1444,8 @@ const headers = {
 };
 
 let body = {
-    "transaction_uuid": "7c65daa7-cb86-3e04-baa4-4ea089abd534",
-    "date_start": "2023-02-03T02:10:39",
-    "date_end": "2023-02-03T02:10:39",
-    "include_debits": false,
-    "include_credits": false
+    "date_start": "2023-03-15T22:50:54",
+    "date_end": "2023-03-15T22:50:54"
 };
 
 fetch(url, {
@@ -1677,11 +1466,8 @@ $response = $client-&gt;get(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'transaction_uuid' =&gt; '7c65daa7-cb86-3e04-baa4-4ea089abd534',
-            'date_start' =&gt; '2023-02-03T02:10:39',
-            'date_end' =&gt; '2023-02-03T02:10:39',
-            'include_debits' =&gt; false,
-            'include_credits' =&gt; false,
+            'date_start' =&gt; '2023-03-15T22:50:54',
+            'date_end' =&gt; '2023-03-15T22:50:54',
         ],
     ]
 );
@@ -1695,11 +1481,8 @@ import json
 
 url = 'http://localhost/api/v2/transaction'
 payload = {
-    "transaction_uuid": "7c65daa7-cb86-3e04-baa4-4ea089abd534",
-    "date_start": "2023-02-03T02:10:39",
-    "date_end": "2023-02-03T02:10:39",
-    "include_debits": false,
-    "include_credits": false
+    "date_start": "2023-03-15T22:50:54",
+    "date_end": "2023-03-15T22:50:54"
 }
 headers = {
   'Authorization': 'Bearer {YOUR_ACCESS_TOKEN}',
@@ -1713,33 +1496,6 @@ response.json()</code></pre></div>
 </span>
 
 <span id="example-responses-GETapi-v2-transaction">
-            <blockquote>
-            <p>Example response (401):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-x-ratelimit-limit: 60
-x-ratelimit-remaining: 56
-access-control-allow-origin: *
- </code></pre></details>         <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;status&quot;: 401,
-    &quot;title&quot;: &quot;Unauthorized&quot;,
-    &quot;type&quot;: &quot;https://www.rfc-editor.org/rfc/rfc9110.html&quot;,
-    &quot;message&quot;: &quot;You are unauthenticated and therefore unauthorized to access this resource.&quot;,
-    &quot;details&quot;: &quot;The access token provided is either expired or invalid.&quot;,
-    &quot;_links&quot;: {
-        &quot;self&quot;: {
-            &quot;href&quot;: &quot;http://localhost/api/v2/transaction&quot;
-        }
-    }
-}</code>
- </pre>
     </span>
 <span id="execution-results-GETapi-v2-transaction" hidden>
     <blockquote>Received response<span
@@ -1815,26 +1571,15 @@ access-control-allow-origin: *
             </div>
                                 <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>transaction_uuid</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
-                <input type="text" style="display: none"
-               name="transaction_uuid"                data-endpoint="GETapi-v2-transaction"
-               value="7c65daa7-cb86-3e04-baa4-4ea089abd534"
-               data-component="body">
-    <br>
-<p>Must be a valid UUID. Example: <code>7c65daa7-cb86-3e04-baa4-4ea089abd534</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>date_start</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                name="date_start"                data-endpoint="GETapi-v2-transaction"
-               value="2023-02-03T02:10:39"
+               value="2023-03-15T22:50:54"
                data-component="body">
     <br>
-<p>Must be a valid date. Example: <code>2023-02-03T02:10:39</code></p>
+<p>Must be a valid date. Example: <code>2023-03-15T22:50:54</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>date_end</code></b>&nbsp;&nbsp;
@@ -1842,58 +1587,1197 @@ access-control-allow-origin: *
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                name="date_end"                data-endpoint="GETapi-v2-transaction"
-               value="2023-02-03T02:10:39"
+               value="2023-03-15T22:50:54"
                data-component="body">
     <br>
-<p>Must be a valid date. Example: <code>2023-02-03T02:10:39</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>include_debits</code></b>&nbsp;&nbsp;
-<small>boolean</small>&nbsp;
-<i>optional</i> &nbsp;
-                <label data-endpoint="GETapi-v2-transaction" style="display: none">
-            <input type="radio" name="include_debits"
-                   value="true"
-                   data-endpoint="GETapi-v2-transaction"
-                   data-component="body"             >
-            <code>true</code>
-        </label>
-        <label data-endpoint="GETapi-v2-transaction" style="display: none">
-            <input type="radio" name="include_debits"
-                   value="false"
-                   data-endpoint="GETapi-v2-transaction"
-                   data-component="body"             >
-            <code>false</code>
-        </label>
-    <br>
-<p>Example: <code>false</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>include_credits</code></b>&nbsp;&nbsp;
-<small>boolean</small>&nbsp;
-<i>optional</i> &nbsp;
-                <label data-endpoint="GETapi-v2-transaction" style="display: none">
-            <input type="radio" name="include_credits"
-                   value="true"
-                   data-endpoint="GETapi-v2-transaction"
-                   data-component="body"             >
-            <code>true</code>
-        </label>
-        <label data-endpoint="GETapi-v2-transaction" style="display: none">
-            <input type="radio" name="include_credits"
-                   value="false"
-                   data-endpoint="GETapi-v2-transaction"
-                   data-component="body"             >
-            <code>false</code>
-        </label>
-    <br>
-<p>Example: <code>false</code></p>
+<p>Must be a valid date. Example: <code>2023-03-15T22:50:54</code></p>
         </div>
         </form>
 
-            
+                    <h2 id="endpoints-POSTapi-v2-transaction">Create a new Transaction record</h2>
 
-        
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v2-transaction">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost/api/v2/transaction" \
+    --header "Authorization: Bearer {YOUR_ACCESS_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"user_id\": 11,
+    \"category_id\": 1,
+    \"channel_id\": 19,
+    \"debit_account_id\": 14,
+    \"credit_account_id\": 8,
+    \"amount\": 42147.079621417,
+    \"origin_currency_id\": 20,
+    \"target_currency_id\": 3,
+    \"external_ref_no\": \"animi\",
+    \"remarks\": \"iste\",
+    \"fees\": [
+        {
+            \"account_id\": 158930,
+            \"amount\": 10.2,
+            \"type_id\": 1
+        }
+    ],
+    \"metadata\": [
+        {
+            \"key\": \"partner_transaction_details\",
+            \"value\": {
+                \"bank_swift\": \"CUOBPHM2\",
+                \"recipient_name\": \"Juan dela Cruz\",
+                \"recipient_address\": \"300 Juan dela Street, WA 6021\"
+            }
+        }
+    ]
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/v2/transaction"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_ACCESS_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "user_id": 11,
+    "category_id": 1,
+    "channel_id": 19,
+    "debit_account_id": 14,
+    "credit_account_id": 8,
+    "amount": 42147.079621417,
+    "origin_currency_id": 20,
+    "target_currency_id": 3,
+    "external_ref_no": "animi",
+    "remarks": "iste",
+    "fees": [
+        {
+            "account_id": 158930,
+            "amount": 10.2,
+            "type_id": 1
+        }
+    ],
+    "metadata": [
+        {
+            "key": "partner_transaction_details",
+            "value": {
+                "bank_swift": "CUOBPHM2",
+                "recipient_name": "Juan dela Cruz",
+                "recipient_address": "300 Juan dela Street, WA 6021"
+            }
+        }
+    ]
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;post(
+    'http://localhost/api/v2/transaction',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_ACCESS_TOKEN}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+            $o = [
+                clone (($p = &amp;\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['stdClass'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('stdClass')),
+                clone $p['stdClass'],
+                clone $p['stdClass'],
+            ],
+            null,
+            [
+                'stdClass' =&gt; [
+                    'account_id' =&gt; [
+                        158930,
+                    ],
+                    'amount' =&gt; [
+                        10.2,
+                    ],
+                    'type_id' =&gt; [
+                        1,
+                    ],
+                    'key' =&gt; [
+                        1 =&gt; 'partner_transaction_details',
+                    ],
+                    'value' =&gt; [
+                        1 =&gt; $o[2],
+                    ],
+                    'bank_swift' =&gt; [
+                        2 =&gt; 'CUOBPHM2',
+                    ],
+                    'recipient_name' =&gt; [
+                        2 =&gt; 'Juan dela Cruz',
+                    ],
+                    'recipient_address' =&gt; [
+                        2 =&gt; '300 Juan dela Street, WA 6021',
+                    ],
+                ],
+            ],
+            [
+                'user_id' =&gt; 11,
+                'category_id' =&gt; 1,
+                'channel_id' =&gt; 19,
+                'debit_account_id' =&gt; 14,
+                'credit_account_id' =&gt; 8,
+                'amount' =&gt; 42147.079621417,
+                'origin_currency_id' =&gt; 20,
+                'target_currency_id' =&gt; 3,
+                'external_ref_no' =&gt; 'animi',
+                'remarks' =&gt; 'iste',
+                'fees' =&gt; [
+                    $o[0],
+                ],
+                'metadata' =&gt; [
+                    $o[1],
+                ],
+            ],
+            []
+        ),
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost/api/v2/transaction'
+payload = {
+    "user_id": 11,
+    "category_id": 1,
+    "channel_id": 19,
+    "debit_account_id": 14,
+    "credit_account_id": 8,
+    "amount": 42147.079621417,
+    "origin_currency_id": 20,
+    "target_currency_id": 3,
+    "external_ref_no": "animi",
+    "remarks": "iste",
+    "fees": [
+        {
+            "account_id": 158930,
+            "amount": 10.2,
+            "type_id": 1
+        }
+    ],
+    "metadata": [
+        {
+            "key": "partner_transaction_details",
+            "value": {
+                "bank_swift": "CUOBPHM2",
+                "recipient_name": "Juan dela Cruz",
+                "recipient_address": "300 Juan dela Street, WA 6021"
+            }
+        }
+    ]
+}
+headers = {
+  'Authorization': 'Bearer {YOUR_ACCESS_TOKEN}',
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('POST', url, headers=headers, json=payload)
+response.json()</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v2-transaction">
+</span>
+<span id="execution-results-POSTapi-v2-transaction" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v2-transaction"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v2-transaction" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v2-transaction" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v2-transaction"></code></pre>
+</span>
+<form id="form-POSTapi-v2-transaction" data-method="POST"
+      data-path="api/v2/transaction"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v2-transaction', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-v2-transaction"
+                    onclick="tryItOut('POSTapi-v2-transaction');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-v2-transaction"
+                    onclick="cancelTryOut('POSTapi-v2-transaction');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-v2-transaction" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v2/transaction</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="Authorization" class="auth-value"               data-endpoint="POSTapi-v2-transaction"
+               value="Bearer {YOUR_ACCESS_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_ACCESS_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="Content-Type"                data-endpoint="POSTapi-v2-transaction"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="Accept"                data-endpoint="POSTapi-v2-transaction"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>user_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               name="user_id"                data-endpoint="POSTapi-v2-transaction"
+               value="11"
+               data-component="body">
+    <br>
+<p>Example: <code>11</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>category_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               name="category_id"                data-endpoint="POSTapi-v2-transaction"
+               value="1"
+               data-component="body">
+    <br>
+<p>Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>channel_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               name="channel_id"                data-endpoint="POSTapi-v2-transaction"
+               value="19"
+               data-component="body">
+    <br>
+<p>Example: <code>19</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>debit_account_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               name="debit_account_id"                data-endpoint="POSTapi-v2-transaction"
+               value="14"
+               data-component="body">
+    <br>
+<p>Example: <code>14</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>credit_account_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               name="credit_account_id"                data-endpoint="POSTapi-v2-transaction"
+               value="8"
+               data-component="body">
+    <br>
+<p>The value and <code>debit_account_id</code> must be different. Example: <code>8</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>amount</code></b>&nbsp;&nbsp;
+<small>number</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               name="amount"                data-endpoint="POSTapi-v2-transaction"
+               value="42147.079621417"
+               data-component="body">
+    <br>
+<p>Example: <code>42147.079621417</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>origin_currency_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               name="origin_currency_id"                data-endpoint="POSTapi-v2-transaction"
+               value="20"
+               data-component="body">
+    <br>
+<p>Example: <code>20</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>target_currency_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               name="target_currency_id"                data-endpoint="POSTapi-v2-transaction"
+               value="3"
+               data-component="body">
+    <br>
+<p>Example: <code>3</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>external_ref_no</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+               name="external_ref_no"                data-endpoint="POSTapi-v2-transaction"
+               value="animi"
+               data-component="body">
+    <br>
+<p>Example: <code>animi</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>remarks</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+               name="remarks"                data-endpoint="POSTapi-v2-transaction"
+               value="iste"
+               data-component="body">
+    <br>
+<p>Example: <code>iste</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+        <details>
+            <summary style="padding-bottom: 10px;">
+                <b style="line-height: 2;"><code>fees</code></b>&nbsp;&nbsp;
+<small>object[]</small>&nbsp;
+<i>optional</i> &nbsp;
+<br>
+<p>List of transaction fees.</p>
+            </summary>
+                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>account_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               name="fees.0.account_id"                data-endpoint="POSTapi-v2-transaction"
+               value="1"
+               data-component="body">
+    <br>
+<p>Example: <code>1</code></p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>amount</code></b>&nbsp;&nbsp;
+<small>number</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               name="fees.0.amount"                data-endpoint="POSTapi-v2-transaction"
+               value="141404"
+               data-component="body">
+    <br>
+<p>Example: <code>141404</code></p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>type_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               name="fees.0.type_id"                data-endpoint="POSTapi-v2-transaction"
+               value="5"
+               data-component="body">
+    <br>
+<p>Example: <code>5</code></p>
+                    </div>
+                                    </details>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+        <details>
+            <summary style="padding-bottom: 10px;">
+                <b style="line-height: 2;"><code>metadata</code></b>&nbsp;&nbsp;
+<small>object[]</small>&nbsp;
+<i>optional</i> &nbsp;
+<br>
+<p>List of metadata entries.</p>
+            </summary>
+                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>key</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="metadata.0.key"                data-endpoint="POSTapi-v2-transaction"
+               value="sit"
+               data-component="body">
+    <br>
+<p>Example: <code>sit</code></p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>value</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="metadata.0.value"                data-endpoint="POSTapi-v2-transaction"
+               value="id"
+               data-component="body">
+    <br>
+<p>Example: <code>id</code></p>
+                    </div>
+                                    </details>
+        </div>
+        </form>
+
+                    <h2 id="endpoints-GETapi-v2-journal-transaction--uuid-">Fetch all Wallet Journal Records that belong to a
+given Transaction</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v2-journal-transaction--uuid-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/api/v2/journal/transaction/11be467eb-7F0Cb-dCeAb-dDe9b-8CfCcd21C77F" \
+    --header "Authorization: Bearer {YOUR_ACCESS_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/v2/journal/transaction/11be467eb-7F0Cb-dCeAb-dDe9b-8CfCcd21C77F"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_ACCESS_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://localhost/api/v2/journal/transaction/11be467eb-7F0Cb-dCeAb-dDe9b-8CfCcd21C77F',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_ACCESS_TOKEN}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost/api/v2/journal/transaction/11be467eb-7F0Cb-dCeAb-dDe9b-8CfCcd21C77F'
+headers = {
+  'Authorization': 'Bearer {YOUR_ACCESS_TOKEN}',
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('GET', url, headers=headers)
+response.json()</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v2-journal-transaction--uuid-">
+    </span>
+<span id="execution-results-GETapi-v2-journal-transaction--uuid-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v2-journal-transaction--uuid-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v2-journal-transaction--uuid-" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v2-journal-transaction--uuid-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v2-journal-transaction--uuid-"></code></pre>
+</span>
+<form id="form-GETapi-v2-journal-transaction--uuid-" data-method="GET"
+      data-path="api/v2/journal/transaction/{uuid}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v2-journal-transaction--uuid-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v2-journal-transaction--uuid-"
+                    onclick="tryItOut('GETapi-v2-journal-transaction--uuid-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v2-journal-transaction--uuid-"
+                    onclick="cancelTryOut('GETapi-v2-journal-transaction--uuid-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v2-journal-transaction--uuid-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v2/journal/transaction/{uuid}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="Authorization" class="auth-value"               data-endpoint="GETapi-v2-journal-transaction--uuid-"
+               value="Bearer {YOUR_ACCESS_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_ACCESS_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="Content-Type"                data-endpoint="GETapi-v2-journal-transaction--uuid-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="Accept"                data-endpoint="GETapi-v2-journal-transaction--uuid-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>uuid</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="uuid"                data-endpoint="GETapi-v2-journal-transaction--uuid-"
+               value="11be467eb-7F0Cb-dCeAb-dDe9b-8CfCcd21C77F"
+               data-component="url">
+    <br>
+<p>Example: <code>11be467eb-7F0Cb-dCeAb-dDe9b-8CfCcd21C77F</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="endpoints-GETapi-v2-journal-wallet--id-">Fetch all Wallet Journal Records that belong to a
+given Wallet</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v2-journal-wallet--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/api/v2/journal/wallet/6" \
+    --header "Authorization: Bearer {YOUR_ACCESS_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"date_start\": \"2023-03-15T22:50:54\",
+    \"date_end\": \"2023-03-15T22:50:54\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/v2/journal/wallet/6"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_ACCESS_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "date_start": "2023-03-15T22:50:54",
+    "date_end": "2023-03-15T22:50:54"
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://localhost/api/v2/journal/wallet/6',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_ACCESS_TOKEN}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'date_start' =&gt; '2023-03-15T22:50:54',
+            'date_end' =&gt; '2023-03-15T22:50:54',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost/api/v2/journal/wallet/6'
+payload = {
+    "date_start": "2023-03-15T22:50:54",
+    "date_end": "2023-03-15T22:50:54"
+}
+headers = {
+  'Authorization': 'Bearer {YOUR_ACCESS_TOKEN}',
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('GET', url, headers=headers, json=payload)
+response.json()</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v2-journal-wallet--id-">
+    </span>
+<span id="execution-results-GETapi-v2-journal-wallet--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v2-journal-wallet--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v2-journal-wallet--id-" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v2-journal-wallet--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v2-journal-wallet--id-"></code></pre>
+</span>
+<form id="form-GETapi-v2-journal-wallet--id-" data-method="GET"
+      data-path="api/v2/journal/wallet/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v2-journal-wallet--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v2-journal-wallet--id-"
+                    onclick="tryItOut('GETapi-v2-journal-wallet--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v2-journal-wallet--id-"
+                    onclick="cancelTryOut('GETapi-v2-journal-wallet--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v2-journal-wallet--id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v2/journal/wallet/{id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="Authorization" class="auth-value"               data-endpoint="GETapi-v2-journal-wallet--id-"
+               value="Bearer {YOUR_ACCESS_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_ACCESS_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="Content-Type"                data-endpoint="GETapi-v2-journal-wallet--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="Accept"                data-endpoint="GETapi-v2-journal-wallet--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="id"                data-endpoint="GETapi-v2-journal-wallet--id-"
+               value="6"
+               data-component="url">
+    <br>
+<p>The ID of the wallet. Example: <code>6</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>date_start</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+               name="date_start"                data-endpoint="GETapi-v2-journal-wallet--id-"
+               value="2023-03-15T22:50:54"
+               data-component="body">
+    <br>
+<p>Must be a valid date. Example: <code>2023-03-15T22:50:54</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>date_end</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+               name="date_end"                data-endpoint="GETapi-v2-journal-wallet--id-"
+               value="2023-03-15T22:50:54"
+               data-component="body">
+    <br>
+<p>Must be a valid date. Example: <code>2023-03-15T22:50:54</code></p>
+        </div>
+        </form>
+
+                    <h2 id="endpoints-GETapi-v2-journal--uuid-">Fetch a specific Wallet Journal Record</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v2-journal--uuid-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/api/v2/journal/Ec8Dc425b-b61Bb-11C0b-3beCb-2DDaCAB97C97" \
+    --header "Authorization: Bearer {YOUR_ACCESS_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/v2/journal/Ec8Dc425b-b61Bb-11C0b-3beCb-2DDaCAB97C97"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_ACCESS_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://localhost/api/v2/journal/Ec8Dc425b-b61Bb-11C0b-3beCb-2DDaCAB97C97',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_ACCESS_TOKEN}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost/api/v2/journal/Ec8Dc425b-b61Bb-11C0b-3beCb-2DDaCAB97C97'
+headers = {
+  'Authorization': 'Bearer {YOUR_ACCESS_TOKEN}',
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('GET', url, headers=headers)
+response.json()</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v2-journal--uuid-">
+    </span>
+<span id="execution-results-GETapi-v2-journal--uuid-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v2-journal--uuid-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v2-journal--uuid-" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v2-journal--uuid-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v2-journal--uuid-"></code></pre>
+</span>
+<form id="form-GETapi-v2-journal--uuid-" data-method="GET"
+      data-path="api/v2/journal/{uuid}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v2-journal--uuid-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v2-journal--uuid-"
+                    onclick="tryItOut('GETapi-v2-journal--uuid-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v2-journal--uuid-"
+                    onclick="cancelTryOut('GETapi-v2-journal--uuid-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v2-journal--uuid-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v2/journal/{uuid}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="Authorization" class="auth-value"               data-endpoint="GETapi-v2-journal--uuid-"
+               value="Bearer {YOUR_ACCESS_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_ACCESS_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="Content-Type"                data-endpoint="GETapi-v2-journal--uuid-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="Accept"                data-endpoint="GETapi-v2-journal--uuid-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>uuid</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="uuid"                data-endpoint="GETapi-v2-journal--uuid-"
+               value="Ec8Dc425b-b61Bb-11C0b-3beCb-2DDaCAB97C97"
+               data-component="url">
+    <br>
+<p>Example: <code>Ec8Dc425b-b61Bb-11C0b-3beCb-2DDaCAB97C97</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="endpoints-GETapi-v2-journal">Fetch all Wallet Journal Records that belong to a
+given User qnd search based on parameters</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v2-journal">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/api/v2/journal" \
+    --header "Authorization: Bearer {YOUR_ACCESS_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"date_start\": \"2023-03-15T22:50:54\",
+    \"date_end\": \"2023-03-15T22:50:54\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/v2/journal"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_ACCESS_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "date_start": "2023-03-15T22:50:54",
+    "date_end": "2023-03-15T22:50:54"
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://localhost/api/v2/journal',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_ACCESS_TOKEN}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'date_start' =&gt; '2023-03-15T22:50:54',
+            'date_end' =&gt; '2023-03-15T22:50:54',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost/api/v2/journal'
+payload = {
+    "date_start": "2023-03-15T22:50:54",
+    "date_end": "2023-03-15T22:50:54"
+}
+headers = {
+  'Authorization': 'Bearer {YOUR_ACCESS_TOKEN}',
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('GET', url, headers=headers, json=payload)
+response.json()</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v2-journal">
+    </span>
+<span id="execution-results-GETapi-v2-journal" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v2-journal"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v2-journal" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v2-journal" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v2-journal"></code></pre>
+</span>
+<form id="form-GETapi-v2-journal" data-method="GET"
+      data-path="api/v2/journal"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v2-journal', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v2-journal"
+                    onclick="tryItOut('GETapi-v2-journal');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v2-journal"
+                    onclick="cancelTryOut('GETapi-v2-journal');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v2-journal" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v2/journal</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="Authorization" class="auth-value"               data-endpoint="GETapi-v2-journal"
+               value="Bearer {YOUR_ACCESS_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_ACCESS_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="Content-Type"                data-endpoint="GETapi-v2-journal"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="Accept"                data-endpoint="GETapi-v2-journal"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>date_start</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+               name="date_start"                data-endpoint="GETapi-v2-journal"
+               value="2023-03-15T22:50:54"
+               data-component="body">
+    <br>
+<p>Must be a valid date. Example: <code>2023-03-15T22:50:54</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>date_end</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+               name="date_end"                data-endpoint="GETapi-v2-journal"
+               value="2023-03-15T22:50:54"
+               data-component="body">
+    <br>
+<p>Must be a valid date. Example: <code>2023-03-15T22:50:54</code></p>
+        </div>
+        </form>
+
+
+
+
     </div>
     <div class="dark-box">
                     <div class="lang-selector">

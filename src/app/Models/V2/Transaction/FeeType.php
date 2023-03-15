@@ -2,8 +2,9 @@
 
 namespace App\Models\V2\Transaction;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\AbstractModel;
 
-class FeeType extends Model
+class FeeType extends AbstractModel
 {
+    protected $table = 'transaction_fee_type';
 }

@@ -7,6 +7,8 @@ use Throwable;
 
 class AccountNotFoundException extends AbstractWalletException
 {
+    public int $httpStatus = 404;
+
     public function __construct(?Throwable $previous = null)
     {
         parent::__construct(

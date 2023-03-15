@@ -2,10 +2,13 @@
 
 namespace App\Http\Factory;
 
-use Exception;
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\MessageBag;
+use Throwable;
 use Traversable;
 use function response;
 
@@ -19,6 +22,7 @@ class JsonResponseFactory
 {
     public const REQUEST_SUCCESS_OK = 200;
     public const REQUEST_SUCCESS_CREATED = 201;
+    public const REQUEST_SUCCESS_QUEUED = 202;
     public const REQUEST_SUCCESS_NO_CONTENT = 204;
     public const CLIENT_ERROR_BAD_REQUEST = 400;
     public const CLIENT_ERROR_UNAUTHORIZED = 401;
@@ -50,6 +54,16 @@ class JsonResponseFactory
             return self::create($statusCode, null, null, [], true);
         }
         return self::create($statusCode, $message, $details);
+    }
+
+    /**
+     * Return a JSON response outlining a process has been successfully queued.
+     *
+     * @return JsonResponse
+     */
+    public static function queued(): JsonResponse
+    {
+        return self::create(202, null, null, [], true);
     }
 
     /**
@@ -157,21 +171,23 @@ class JsonResponseFactory
 
         return self::create(
             self::CLIENT_ERROR_FAILED_VALIDATION,
-            'Validation failed. Please check your inputs.',
-            ['errors' => $errors]
+            [
+                'message' => 'Validation failed. Please check your inputs.',
+                'errors' => $errors
+            ]
         );
     }
 
     /**
      * Return a JSON response outlining an internal Server error.
      *
-     * @param string|array|Exception $details Additional details for this error; if an Exception is provided, the response will be formatted automatically
+     * @param string|array|Throwable $details Additional details for this error; if an Exception is provided, the response will be formatted automatically
      * @param string|array|null $context Additional context for the exception; will be ignored if no exception provided
      * @return JsonResponse
      */
-    public static function serverError(string|array|Exception $details, string|array|null $context = null): JsonResponse
+    public static function serverError(string|array|Throwable $details, string|array|null $context = null): JsonResponse
     {
-        if ($details instanceof Exception) {
+        if ($details instanceof Throwable) {
             $details = [
                 'error' => [
                     'code' => $details->getCode(),
@@ -212,16 +228,102 @@ class JsonResponseFactory
         return match ($statusCode) {
             self::CLIENT_ERROR_BAD_REQUEST        => self::badRequest($details),
             self::CLIENT_ERROR_UNAUTHORIZED       => self::unauthenticated($details),
-            self::CLIENT_ERROR_FORBIDDEN          => self::accessForbidden(),
+            self::CLIENT_ERROR_FORBIDDEN          => self::accessForbidden($details),
             self::CLIENT_ERROR_NOT_FOUND          => self::notFound(null, null, $details),
             self::CLIENT_ERROR_METHOD_NOT_ALLOWED => self::methodForbidden(),
             self::CLIENT_ERROR_NOT_ACCEPTABLE     => self::notAcceptable($details),
             self::REQUEST_SUCCESS_OK              => self::success(null, $message, $details),
             self::REQUEST_SUCCESS_CREATED         => self::success('POST', $message, $details),
+            self::REQUEST_SUCCESS_QUEUED          => self::queued(),
             self::REQUEST_SUCCESS_NO_CONTENT      => self::success(null, null),
             self::SERVER_ERROR_INTERNAL           => self::serverError($details),
             default => self::create($statusCode, $message, $details, self::$headers),
         };
+    }
+
+    /**
+     * Create a JSON Response from a Paginator
+     *
+     * @param LengthAwarePaginator $paginator The Paginator object
+     * @param string $resourceName The name of the resource embedded
+     * @param array $headers The HTTP response headers
+     * @return JsonResponse
+     */
+    public static function fromPagination(LengthAwarePaginator $paginator, string $resourceName, array $headers = []): JsonResponse
+    {
+        $data = [
+            'items_from'     => $paginator->firstItem(),
+            'items_to'       => $paginator->lastItem(),
+            'items_total'    => $paginator->total(),
+            'items_per_page' => $paginator->perPage(),
+            'current_page'   => $paginator->currentPage(),
+            'last_page'      => $paginator->lastPage(),
+            '_embedded'      => [
+                $resourceName => $paginator->items()
+            ],
+            '_links'         => [
+                'self' => [
+                    'href' => $paginator->url($paginator->currentPage()),
+                ],
+                'first' => [
+                    'href' => $paginator->url(1),
+                ],
+                'prev' => [
+                    'href' => $paginator->previousPageUrl()
+                ],
+                'next' => [
+                    'href' => $paginator->nextPageUrl()
+                ],
+                'last' => [
+                    'href' => $paginator->url($paginator->lastPage()),
+                ],
+            ]
+        ];
+
+        return response()->json($data, 200, $headers);
+    }
+
+    /**
+     * Create a HAL+JSON Response from a Collection
+     *
+     * @param Collection $collection The Collection holding the data
+     * @param string $resourceName The name of the resource embedded
+     * @param array $headers The HTTP response headers
+     * @return JsonResponse
+     */
+    public static function fromCollection(Collection $collection, string $resourceName, array $headers = []): JsonResponse
+    {
+        $data = [
+            'items_total'     => $collection->count(),
+            '_embedded' => [
+                $resourceName => $collection
+            ],
+            '_links'    => [
+                'self' => [
+                    'href' => url()->current(),
+                ],
+            ]
+        ];
+
+        return response()->json($data, 200, $headers);
+    }
+
+    /**
+     * Create a HAL+JSON Response from a Model
+     *
+     * @param Model $model The Model holding the data
+     * @param array $headers The HTTP response headers
+     * @return JsonResponse
+     */
+    public static function fromModel(Model $model, array $headers = []): JsonResponse
+    {
+        $model->setRelation('_links', collect([
+            'self' => [
+                'href' => url()->current(),
+            ],
+        ]));
+
+        return response()->json($model, 200, $headers);
     }
 
     /**
@@ -276,7 +378,7 @@ class JsonResponseFactory
         // Basic HAL+JSON response properties
         if (!$noResponseProperties) {
             self::setLinksHal($body);
-            self::setPropertiesHal($body, $statusCode);
+            //self::setPropertiesHal($body, $statusCode); TODO: Deprecate this
         }
 
         return response()->json($body, $statusCode, $headers);
@@ -300,7 +402,9 @@ class JsonResponseFactory
             self::CLIENT_ERROR_FAILED_VALIDATION => 'Unprocessable Entity',
             self::REQUEST_SUCCESS_OK => 'Success',
             self::REQUEST_SUCCESS_CREATED => 'Created',
+            self::REQUEST_SUCCESS_QUEUED  => 'Queued',
             self::REQUEST_SUCCESS_NO_CONTENT => 'No Content',
+            self::SERVER_ERROR_INTERNAL => 'Internal Server Error',
             default => 'HTTP Response Title Unavailable'
         };
     }

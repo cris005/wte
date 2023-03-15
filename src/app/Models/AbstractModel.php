@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 abstract class AbstractModel extends Model
 {
-    protected $connection = '';
+    protected $connection = 'wallet';
     protected $primaryKey = 'id';
 
     /**

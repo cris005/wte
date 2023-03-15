@@ -8,11 +8,10 @@ class FeeTypeSeeder extends AbstractSeeder
 {
     protected string $model = \App\Models\V2\Transaction\FeeType::class;
     protected array $rows = [
-        // Direct equivalent to FEE1, FEE2, FEE3, FEE4 and FEE5
-        ['id' => 1, 'name' => 'Peppermint Revenue'],
-        ['id' => 2, 'name' => 'Bizmoto Revenue'],
-        ['id' => 3, 'name' => 'Network Partner'],
-        ['id' => 4, 'name' => 'Business Center'],
-        ['id' => 5, 'name' => 'User Commission']
+        ['id' => 1, 'name' => 'Institution Revenue', 'description' => 'Parent company\'s share from the transaction'],
+        ['id' => 2, 'name' => 'Subsidiary Revenue', 'description' => '1st Party product\'s share from the transaction'],
+        ['id' => 3, 'name' => 'Network Partner', 'description' => 'Partner\'s share from the transaction'],
+        ['id' => 4, 'name' => 'Business Center', 'description' => 'Business Center\'s share from the transaction'],
+        ['id' => 5, 'name' => 'User Commission', 'description' => 'User\'s commission from the transaction']
     ];
 }

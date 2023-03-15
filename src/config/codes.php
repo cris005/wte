@@ -13,12 +13,12 @@ return [
     */
 
     'error' => [
-        'internal'             => env('ERR_INTERNAL_EXCEPTION'),
-        'account_not_found'    => env('ERR_ACCOUNT_NOT_FOUND'),
-        'insufficient_balance' => env('ERR_INSUFFICIENT_BALANCE'),
-        'invalid_fees'         => env('ERR_INVALID_FEES'),
-        'invalid_ref_no'       => env('ERR_INVALID_REF_NO'),
-        'unauthorized'         => env('ERR_ACTION_UNAUTHORIZED'),
+        'internal'             => (int) env('ERR_INTERNAL_EXCEPTION'),
+        'account_not_found'    => (int) env('ERR_ACCOUNT_NOT_FOUND'),
+        'insufficient_balance' => (int) env('ERR_INSUFFICIENT_BALANCE'),
+        'invalid_fees'         => (int) env('ERR_INVALID_FEES'),
+        'invalid_ref_no'       => (int) env('ERR_INVALID_REF_NO'),
+        'unauthorized'         => (int) env('ERR_ACTION_UNAUTHORIZED'),
     ],
 
     'status' => [

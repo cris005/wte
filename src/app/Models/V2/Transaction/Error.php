@@ -2,8 +2,9 @@
 
 namespace App\Models\V2\Transaction;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\AbstractModel;
 
-class Error extends Model
+class Error extends AbstractModel
 {
+    protected $table = 'transaction_error';
 }

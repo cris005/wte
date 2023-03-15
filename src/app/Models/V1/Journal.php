@@ -2,7 +2,7 @@
 
 namespace App\Models\V1;
 
-use App\Exceptions\Ledger\InvalidRefNumException;
+use App\Exceptions\Journal\InvalidRefNumException;
 use App\Exceptions\Wallet\AccountNotFoundException;
 use App\Exceptions\Wallet\InsufficientBalanceException;
 use App\Http\Factory\LoggerTrait;

@@ -17,7 +17,7 @@ class TransferRequest extends AbstractTransactionRequest
             'Amount'     => ['required', 'numeric', 'gt:0'],
             'Fee'        => ['nullable', 'numeric', 'gte:0'],
             'Accounts'   => ['nullable', 'array', 'min:1'],
-            'Accounts.*' => ['required', 'numeric', 'gt:0', 'max_digits:12'],
+            'Accounts.*' => ['required', 'numeric', 'gte:0'],
         ];
     }
 

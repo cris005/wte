@@ -2,10 +2,14 @@
 
 namespace App\Providers;
 
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
+use App\Events\ReversalProcessed;
+use App\Events\TransactionCreated;
+use App\Events\TransactionUpdated;
+use App\Events\TransferProcessed;
+use App\Events\WalletCreated;
+use App\Listeners\SendReversalNotification;
+use App\Listeners\SendTransferNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Event;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -15,9 +19,21 @@ class EventServiceProvider extends ServiceProvider
      * @var array<class-string, array<int, class-string>>
      */
     protected $listen = [
-        Registered::class => [
-            SendEmailVerificationNotification::class,
+        TransferProcessed::class => [
+            SendTransferNotification::class,
         ],
+        ReversalProcessed::class => [
+            SendReversalNotification::class
+        ],
+        TransactionCreated::class => [
+            // TODO: create listener
+        ],
+        TransactionUpdated::class => [
+            // TODO: create listeners
+        ],
+        WalletCreated::class => [
+            // TODO: create listeners
+        ]
     ];
 
     /**
@@ -25,7 +41,7 @@ class EventServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         //
     }
@@ -35,7 +51,7 @@ class EventServiceProvider extends ServiceProvider
      *
      * @return bool
      */
-    public function shouldDiscoverEvents()
+    public function shouldDiscoverEvents(): bool
     {
         return false;
     }

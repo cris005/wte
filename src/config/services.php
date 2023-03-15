@@ -36,7 +36,8 @@ return [
         'endpoint' => [
             'fetch_user' => env('OAUTH_ENDPOINT_FETCH_USER'),
             'client_credentials' => env('OAUTH_ENDPOINT_VALIDATE_CLIENT_CREDENTIALS')
-        ]
+        ],
+        'public_client_id' => env('OAUTH_PUBLIC_CLIENT_ID'),
     ],
 
 ];

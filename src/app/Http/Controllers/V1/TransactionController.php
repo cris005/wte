@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers\V1;
 
-use App\Exceptions\Ledger\InvalidFeesException;
-use App\Exceptions\Ledger\InvalidRefNumException;
-use App\Exceptions\Ledger\InvalidReversalException;
+use App\Exceptions\Journal\InvalidFeesException;
 use App\Exceptions\Wallet\AccountNotFoundException;
 use App\Exceptions\Wallet\InsufficientBalanceException;
 use App\Http\Requests\V1\BalanceInquiryRequest;
 use App\Http\Requests\V1\ReversalRequest;
 use App\Http\Requests\V1\TransferRequest;
-use App\Models\User\Wallet;
 use App\Models\V1\Journal;
 use Brick\Money\Money;
 use Exception;
@@ -74,23 +71,9 @@ class TransactionController extends AbstractController
     public function reverse(ReversalRequest $request): JsonResponse
     {
         $this->logStart($request->transactionType);
-        $data = $request->validated();
 
         try {
-            if (Journal::canReverse($data['RefNum'])) {
-                $transactions = Journal::fetch($data['RefNum']);
-            } else {
-                throw new InvalidReversalException();
-            }
-        } catch (InvalidRefNumException|InvalidReversalException $e) {
-            return $this->error($e->getMessage(), $e->getCode());
-        } catch (Exception $e) {
-            $this->log()->exception(self::MSG_ERR_INTERNAL, $e);
-            return $this->error(self::MSG_ERR_INTERNAL);
-        }
-
-        try {
-            foreach ($transactions as $transaction) {
+            foreach ($request->transactions as $transaction) {
                 $transaction->reverse();
             }
         } catch (AccountNotFoundException|InsufficientBalanceException $e) {
@@ -100,7 +83,7 @@ class TransactionController extends AbstractController
             return $this->error(self::MSG_ERR_INTERNAL);
         }
 
-        return $this->success($data['RefNum']);
+        return $this->success($request->validated('RefNum'));
     }
 
     /**
@@ -112,24 +95,13 @@ class TransactionController extends AbstractController
     public function balanceInquiry(BalanceInquiryRequest $request): JsonResponse
     {
         $this->logStart($request->transactionType);
-        $data = $request->validated();
-
-        try {
-            $wallet = Wallet::fetch($data['AccountNo']);
-        } catch (AccountNotFoundException $e) {
-            return $this->error($e->getMessage(), $e->getCode());
-        } catch (Exception $e) {
-            $this->log()->exception(self::MSG_ERR_INTERNAL, $e);
-            return $this->error(self::MSG_ERR_INTERNAL);
-        }
-
         return $this->success(Journal::createRefNum(), [
-            'ACCOUNT_STATUS' => $wallet->STATUS_ID,
-            'ACCOUNT_NO' => $wallet->ACCOUNT_NO,
-            'BALANCE' => $wallet->BALANCE,
+            'ACCOUNT_STATUS' => $request->wallet->STATUS_ID,
+            'ACCOUNT_NO' => $request->wallet->ACCOUNT_NO,
+            'BALANCE' => $request->wallet->BALANCE,
             'Status' => config('codes.status.success'),
-            'AVAILABLE_BALANCE' => $wallet->BALANCE,
-            'AvailableBalance' => $wallet->BALANCE
+            'AVAILABLE_BALANCE' => $request->wallet->BALANCE,
+            'AvailableBalance' => $request->wallet->BALANCE
         ]);
     }
 }

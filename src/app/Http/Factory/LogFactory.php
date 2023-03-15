@@ -3,9 +3,9 @@
 namespace App\Http\Factory;
 
 use App\Http\Controllers\AbstractRestController;
-use Exception;
 use Illuminate\Log\Logger;
 use Illuminate\Support\Facades\Log;
+use Throwable;
 
 class LogFactory
 {
@@ -29,11 +29,11 @@ class LogFactory
      * Build a log from an exception object
      *
      * @param string $message Short message outlining what has gone wrong
-     * @param Exception $exception The exception object thrown
+     * @param Throwable $exception The exception object thrown
      * @param array $context Additional context to include
      * @return void
      */
-    public function exception(string $message, Exception $exception, array $context = []): void
+    public function exception(string $message, Throwable $exception, array $context = []): void
     {
         $this->write(
             'error',

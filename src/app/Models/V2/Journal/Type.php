@@ -2,7 +2,9 @@
 
 namespace App\Models\V2\Journal;
 
-class Type extends AbstractJournalModel
+use App\Models\AbstractModel;
+
+class Type extends AbstractModel
 {
-    protected $table = 'ledger_transaction_type';
+    protected $table = 'journal_transaction_type';
 }

@@ -23,11 +23,10 @@ interface RestControllerInterface
     /**
      * Return a successful response
      *
-     * @param string|iterable|null $payload The body of the response. If a string is provided, it will be treated as the
-     * value of the key "message" in a JSON response.
+     * @param iterable|null $payload The body of the response
      * @return JsonResponse|Response
      */
-    public function success(string|null|iterable $payload): JsonResponse|Response;
+    public function success(null|iterable $payload): JsonResponse|Response;
 
     /**
      * Return an error response
